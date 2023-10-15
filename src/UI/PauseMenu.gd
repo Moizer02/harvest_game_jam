@@ -12,6 +12,7 @@ func _input(event):
 		setPaused(!isPaused)
 
 func setPaused(p : bool):
+	get_tree().root.move_child(self, get_tree().root.get_child_count())
 	isPaused = p
 	visible = p
 	get_tree().paused = p
