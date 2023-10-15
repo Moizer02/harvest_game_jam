@@ -23,7 +23,8 @@ func _ready():
 
 func _physics_process(delta):
 	stateTick += delta
-	if stateTick > 2:
+	if stateTick > 1:
+		stateTick = 0
 		_updateState()
 	
 	# despawn
@@ -91,7 +92,7 @@ func _updateState() -> void:
 	if state == STATES.Idle:
 		_findNewTarget()
 	if state == STATES.Search:
-		pass
+		_findNewTarget()
 
 # Look for a new crop to pick as my target.
 func _findNewTarget() -> void:
@@ -103,10 +104,10 @@ func _findNewTarget() -> void:
 		for crop in crops.get_children():
 			if not crop.has_method("GetBugsInfesting"): continue
 			weights.append([crop, 
-				global_position.distance_to(crop.global_position)/100.0 + crop.GetBugsInfesting()])
+				global_position.distance_to(crop.global_position)/20.0 + 30*crop.GetBugsInfesting()])
 		
 		for opt in weights:
-			if not best or opt[1] > best[1]: best = opt
+			if not best or opt[1] < best[1]: best = opt
 		
 		if best:
 			SetTarget(best[0])

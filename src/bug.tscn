@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cls1afm7ycghd"]
 
 [ext_resource type="Script" path="res://src/bug.gd" id="1_6cvqa"]
-[ext_resource type="Texture2D" uid="uid://du6j51e3ln4m" path="res://art/Bug.png" id="2_ss12i"]
+[ext_resource type="Texture2D" uid="uid://dp8ytdxv51i1e" path="res://art/Bug2.png" id="2_s1ie1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dyou1"]
 radius = 4.0
@@ -16,8 +16,7 @@ collision_mask = 0
 script = ExtResource("1_6cvqa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_ss12i")
+texture = ExtResource("2_s1ie1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_dyou1")

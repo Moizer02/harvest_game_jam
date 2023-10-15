@@ -21,13 +21,13 @@ navigation_polygon = SubResource("NavigationPolygon_wxl7w")
 [node name="bugs" type="Node2D" parent="."]
 
 [node name="Bug" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(294, 392)
+position = Vector2(189, 352)
 
 [node name="Bug2" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(528, 145)
+position = Vector2(610, 178)
 
 [node name="Bug3" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(430, 215)
+position = Vector2(554, 136)
 
 [node name="Bug4" parent="bugs" instance=ExtResource("1_4nbmk")]
 position = Vector2(588, 187)
@@ -36,17 +36,20 @@ position = Vector2(588, 187)
 position = Vector2(466, 161)
 
 [node name="Bug6" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(948, 292)
+position = Vector2(710, 223)
 
 [node name="plants" type="Node2D" parent="."]
 
 [node name="Plant" parent="plants" instance=ExtResource("2_ejuhw")]
-position = Vector2(424, 115)
+position = Vector2(386, 117)
+stage = 1
+
+[node name="Plant2" parent="plants" instance=ExtResource("2_ejuhw")]
+position = Vector2(589, 50)
+
+[node name="Plant3" parent="plants" instance=ExtResource("2_ejuhw")]
+position = Vector2(494, 299)
+stage = 2
 
 [node name="Player" parent="." instance=ExtResource("2_g78at")]
 position = Vector2(485, 90)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(436, 161)
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true

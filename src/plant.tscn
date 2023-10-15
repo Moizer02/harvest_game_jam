@@ -1,11 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://h6jvspaio76m"]
+[gd_scene load_steps=14 format=3 uid="uid://h6jvspaio76m"]
 
 [ext_resource type="Script" path="res://src/plant.gd" id="1_5ukbh"]
+[ext_resource type="Texture2D" uid="uid://b0pak6fxyh20b" path="res://art/crops-v2/empty-soil.png" id="2_bdbel"]
 [ext_resource type="Texture2D" uid="uid://du6j51e3ln4m" path="res://art/Bug.png" id="2_cgdj2"]
 [ext_resource type="Texture2D" uid="uid://cfg30y10kmwer" path="res://art/crops-v2/pumkin4.png" id="3_pj28a"]
+[ext_resource type="Texture2D" uid="uid://be528ypfydfve" path="res://art/crops-v2/pumkin1.png" id="3_tt8r1"]
+[ext_resource type="Texture2D" uid="uid://1e6utm1332xi" path="res://art/crops-v2/pumkin2.png" id="4_5tckq"]
+[ext_resource type="Texture2D" uid="uid://gsxu25x38hua" path="res://art/crops-v2/pumkin3.png" id="5_eeqhe"]
+[ext_resource type="Texture2D" uid="uid://cmjq2pmvdt5s4" path="res://art/crops-v2/pumkin5.png" id="7_yonim"]
+[ext_resource type="Texture2D" uid="uid://dvjpxdnuu5knt" path="res://art/star.png" id="9_2b5eo"]
+[ext_resource type="Texture2D" uid="uid://cx8ujmvjfytdh" path="res://art/dialog-water.png" id="10_67eho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g13ib"]
 size = Vector2(32, 32)
+
+[sub_resource type="Curve" id="Curve_xij36"]
+_data = [Vector2(0, 0.105263), 0.0, 0.0, 0, 0, Vector2(0.824176, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.0491, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q0bn7"]
 radius = 40.0
@@ -14,14 +25,23 @@ radius = 40.0
 collision_layer = 3
 input_pickable = true
 script = ExtResource("1_5ukbh")
+stage1 = ExtResource("3_tt8r1")
+stage2 = ExtResource("4_5tckq")
+stage3 = ExtResource("5_eeqhe")
+stage4 = ExtResource("3_pj28a")
+stage5 = ExtResource("7_yonim")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g13ib")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_pj28a")
+[node name="soil" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_bdbel")
 
-[node name="infected" type="CPUParticles2D" parent="."]
+[node name="plant" type="Sprite2D" parent="."]
+texture = ExtResource("3_tt8r1")
+
+[node name="infectedFX" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 2
 local_coords = true
@@ -36,6 +56,29 @@ angle_max = 180.0
 scale_amount_min = 0.1
 scale_amount_max = 0.2
 color = Color(0.2, 0.2, 0.2, 0.698039)
+
+[node name="growFX" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 6
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = ExtResource("9_2b5eo")
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 35.0
+initial_velocity_max = 55.0
+scale_amount_curve = SubResource("Curve_xij36")
+color = Color(0.541176, 0.901961, 0, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="needwater" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(25, -23)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_67eho")
 
 [node name="Area" type="Area2D" parent="."]
 collision_layer = 0

@@ -1,11 +1,7 @@
 extends StaticBody2D
 
-enum STATES {
-	Idle,
-	Search,
-	Eat,
-	Dead
-}
+const DRY_SOIL = preload("res://art/crops-v2/empty-soil-dry.png")
+const WET_SOIL = preload("res://art/crops-v2/empty-soil.png")
 
 ##		Class Variables			################################################
 var speed:Vector2 = Vector2(45.0, 30.0)
@@ -14,25 +10,41 @@ var target:Node2D # target is a destination that has something there at the end
 var interval:float = randf()
 var stateTick:float = randf()
 var debounce:bool = false
-@export var state:STATES = STATES.Idle
-@export var bugs:int = 0
+var bugs:int = 0
+var water:float = 100
+@export_range(0, 5) var stage:int = 0
+@export var stage1:Texture2D
+@export var stage2:Texture2D
+@export var stage3:Texture2D
+@export var stage4:Texture2D
+@export var stage5:Texture2D
+@onready var map = [stage1, stage2, stage3, stage4, stage5]
 
 
 ##		Built-in Functions		################################################
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	_updateSprite()
 
 func _process(delta):
-	stateTick += delta
-	if stateTick > 2:
-		_updateState()
+	water = clamp(water - delta*2.0, 0, 100)
+	if water < 20:
+		$soil.texture = DRY_SOIL
+	else:
+		$soil.texture = WET_SOIL
+	$needwater.visible = water < 50
+	
+	stateTick += delta * (0.05 + water/120.0)
+	if stateTick > 15:
+		stateTick = 0
+		_grow()
 	
 	# despawn
-	if state == STATES.Dead:
+	if stage == 5:
 		interval += delta
 		if interval > 5:
-			queue_free()
+			stage = 0
+			_updateSprite()
 
 
 ##		Public Functions		################################################
@@ -42,7 +54,7 @@ func AddBug(newBug:CharacterBody2D):
 	debounce = true
 	bugs += 1
 	newBug.queue_free()
-	$infected.emitting = true
+	$infectedFX.emitting = true
 	
 	await get_tree().create_timer(0.5, false).timeout
 	debounce = false
@@ -52,17 +64,36 @@ func GetBugsInfesting() -> int:
 
 func KillBugs():
 	bugs = 0
-	$infected.emitting = false
+	$infectedFX.emitting = false
+
+func Plant():
+	if stage != 0: return
+	stage = 1
+	_updateSprite()
+
+func Harvest():
+	if stage != 4: return
+	stage = 5
+	_updateSprite()
+
+func Water(amount:float=100.0) -> void:
+	water = clamp(water + amount, 0, 100.0)
 
 ##		Private Functions		################################################
-func _updateState() -> void:
-	if state == STATES.Search:
+func _grow() -> void:
+	if stage == 0:
 		pass
+	elif stage < 4:
+		stage += 1
+		$growFX.emitting = true
+	_updateSprite()
+
+func _updateSprite():
+	$plant.texture = map[stage - 1]
 
 ##		Signal Listeners		################################################
 func _onBodyEntered(body:CollisionObject2D):
-	if target and is_instance_valid(target) and target == body:
-		if body.has_method("AddBug"): body.AddBug(self)
+	pass
 
 func _onBodyExited(body:CollisionObject2D):
 	pass
