@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmkqdgjgvxpwt"
-path="res://.godot/imported/character.png-7a996d3b758d22c506b76a7c15391284.ctex"
+uid="uid://du6j51e3ln4m"
+path="res://.godot/imported/Bug.png-660bd486c59e962d84c630dccfa5344e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character.png"
-dest_files=["res://.godot/imported/character.png-7a996d3b758d22c506b76a7c15391284.ctex"]
+source_file="res://art/Bug.png"
+dest_files=["res://.godot/imported/Bug.png-660bd486c59e962d84c630dccfa5344e.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

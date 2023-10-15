@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 
 PauseMenu="*res://src/UI/PauseMenu.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/scale=2.0
+
 [input]
 
 screenshot={
@@ -51,5 +56,6 @@ movement_right={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

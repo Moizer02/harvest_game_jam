@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du6j51e3ln4m"
-path="res://.godot/imported/Bug.png-31710855fe8550ff45e35fcae1aea637.ctex"
+uid="uid://b4m12ncbncsaq"
+path="res://.godot/imported/PathAndObjects.png-a774eaad1f63fa614e99a57a73bba01c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Bug.png"
-dest_files=["res://.godot/imported/Bug.png-31710855fe8550ff45e35fcae1aea637.ctex"]
+source_file="res://art/paths-town-objects/PathAndObjects.png"
+dest_files=["res://.godot/imported/PathAndObjects.png-a774eaad1f63fa614e99a57a73bba01c.ctex"]
 
 [params]
 
