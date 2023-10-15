@@ -4,7 +4,7 @@ extends CharacterBody2D
 var speed:Vector2 = Vector2(45.0, 30.0)
 var destination:Vector2
 var target:Node2D # target is a destination that has something there at the end
-var interval:float
+var interval:float = randf()
 
 
 ##		Built-in Functions		################################################

@@ -15,6 +15,27 @@ polygon = PackedVector2Array(67, 97, 8, 244, 18, 499, 537, 503, 504, 412, 533, 3
 
 [node name="Bug" parent="." instance=ExtResource("1_nph2d")]
 position = Vector2(557, 246)
+collision_layer = 4
+
+[node name="Bug2" parent="." instance=ExtResource("1_nph2d")]
+position = Vector2(557, 246)
+collision_layer = 4
+
+[node name="Bug3" parent="." instance=ExtResource("1_nph2d")]
+position = Vector2(557, 246)
+collision_layer = 4
+
+[node name="Bug4" parent="." instance=ExtResource("1_nph2d")]
+position = Vector2(588, 187)
+collision_layer = 4
+
+[node name="Bug5" parent="." instance=ExtResource("1_nph2d")]
+position = Vector2(495, 179)
+collision_layer = 4
+
+[node name="Bug6" parent="." instance=ExtResource("1_nph2d")]
+position = Vector2(512, 267)
+collision_layer = 4
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_36spj")
