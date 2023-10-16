@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://h6jvspaio76m"]
+[gd_scene load_steps=13 format=3 uid="uid://h6jvspaio76m"]
 
 [ext_resource type="Script" path="res://src/plant.gd" id="1_5ukbh"]
 [ext_resource type="Texture2D" uid="uid://b0pak6fxyh20b" path="res://art/crops-v2/empty-soil.png" id="2_bdbel"]
@@ -17,9 +17,6 @@ radius = 14.0
 [sub_resource type="Curve" id="Curve_xij36"]
 _data = [Vector2(0, 0.105263), 0.0, 0.0, 0, 0, Vector2(0.824176, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.0491, 0.0, 0, 0]
 point_count = 3
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_q0bn7"]
-radius = 40.0
 
 [node name="Plant" type="StaticBody2D"]
 collision_layer = 3
@@ -75,14 +72,6 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 
 [node name="needwater" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(25, -23)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_67eho")
-
-[node name="Area" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 5
-
-[node name="shape" type="CollisionShape2D" parent="Area"]
-shape = SubResource("CircleShape2D_q0bn7")

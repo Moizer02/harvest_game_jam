@@ -27,12 +27,6 @@ func _physics_process(delta):
 		stateTick = 0
 		_updateState()
 	
-	# despawn
-	if state == STATES.Dead:
-		interval += delta
-		if interval > 5:
-			queue_free()
-	
 	# create idle roaming
 	if state == STATES.Idle:
 		interval += delta
@@ -49,7 +43,13 @@ func _physics_process(delta):
 		velocity = dir.normalized() * speed
 	else:
 		velocity = Vector2()
-	move_and_slide()
+	if move_and_slide():
+		var col = get_last_slide_collision().get_collider()
+		
+		if col.name == "Player":
+			Kill()
+		elif target and is_instance_valid(target) and target == col:
+			if col.has_method("AddBug"): col.AddBug(self)
 
 
 ##		Public Functions		################################################
@@ -83,8 +83,13 @@ func Kill():
 	interval = 0
 	SetDestination(position)
 	ClearTarget()
-	# @TODO: play killed effect
+	$CollisionShape2D.disabled = false
+	# @TODO: play killed sound effect
 	# @TODO: release particles
+	$SplatFX.emitting = true
+	
+	await get_tree().create_timer(2, false)
+	queue_free()
 
 
 ##		Private Functions		################################################
@@ -114,9 +119,3 @@ func _findNewTarget() -> void:
 			state = STATES.Search
 
 ##		Signal Listeners		################################################
-func _onBodyEntered(body:CollisionObject2D):
-	if target and is_instance_valid(target) and target == body:
-		if body.has_method("AddBug"): body.AddBug(self)
-
-func _onBodyExited(body:CollisionObject2D):
-	pass

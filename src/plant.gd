@@ -35,7 +35,7 @@ func _process(delta):
 		$soil.texture = WET_SOIL
 	$needwater.visible = water < 50
 	
-	stateTick += delta * (0.05 + water/120.0)
+	stateTick += delta * (0.05 + (water/120.0) * (2.0 - clampf(bugs, 0, 2)/2.0))
 	if stateTick > 15:
 		stateTick = 0
 		_grow()
@@ -67,16 +67,19 @@ func KillBugs():
 	bugs = 0
 	$infectedFX.emitting = false
 
+# Sow a new seed on this spot to start growing.
 func Plant():
 	if stage != 0: return
 	stage = 1
 	_updateSprite()
 
+# Harvest the plant once it is fully ripe.
 func Harvest():
 	if stage != 4: return
 	stage = 5
 	_updateSprite()
 
+# Refill the plant's 
 func Water(amount:float=100.0) -> void:
 	water = clamp(water + amount, 0, 100.0)
 
@@ -93,8 +96,3 @@ func _updateSprite():
 	$plant.texture = map[stage]
 
 ##		Signal Listeners		################################################
-func _onBodyEntered(body:CollisionObject2D):
-	pass
-
-func _onBodyExited(body:CollisionObject2D):
-	pass

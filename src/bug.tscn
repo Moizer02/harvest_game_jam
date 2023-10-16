@@ -2,17 +2,14 @@
 
 [ext_resource type="Script" path="res://src/bug.gd" id="1_6cvqa"]
 [ext_resource type="Texture2D" uid="uid://dp8ytdxv51i1e" path="res://art/Bug2.png" id="2_s1ie1"]
+[ext_resource type="Texture2D" uid="uid://dvjpxdnuu5knt" path="res://art/star.png" id="3_vafjb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dyou1"]
-radius = 4.0
-height = 12.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ofv2a"]
-radius = 15.0
+radius = 3.0
+height = 6.0
 
 [node name="Bug" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 0
 script = ExtResource("1_6cvqa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -23,12 +20,16 @@ shape = SubResource("CapsuleShape2D_dyou1")
 
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
 
-[node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 18
-
-[node name="shape" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource("CircleShape2D_ofv2a")
-
-[connection signal="body_entered" from="Hurtbox" to="." method="_onBodyEntered"]
-[connection signal="body_exited" from="Hurtbox" to="." method="_onBodyExited"]
+[node name="SplatFX" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_vafjb")
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 35.0
+scale_amount_min = 0.3
+scale_amount_max = 0.3
+color = Color(0, 0, 0, 0.607843)
