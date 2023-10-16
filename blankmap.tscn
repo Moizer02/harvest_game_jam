@@ -9973,6 +9973,5 @@ position = Vector2(997, 51)
 
 [node name="Market" parent="." instance=ExtResource("10_i0d68")]
 position = Vector2(1248, 84)
-collision_layer = 8
 
 [connection signal="timeout" from="DayNightCycler/Timer" to="." method="_on_night_timer_timeout"]
