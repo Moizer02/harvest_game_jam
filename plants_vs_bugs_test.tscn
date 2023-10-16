@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu2petadfpyqi"]
+[gd_scene load_steps=6 format=3 uid="uid://cu2petadfpyqi"]
 
 [ext_resource type="PackedScene" uid="uid://cls1afm7ycghd" path="res://src/bug.tscn" id="1_4nbmk"]
 [ext_resource type="PackedScene" uid="uid://h6jvspaio76m" path="res://src/plant.tscn" id="2_ejuhw"]
 [ext_resource type="PackedScene" uid="uid://csw6wc8p75aei" path="res://src/Player/player.tscn" id="2_g78at"]
+[ext_resource type="PackedScene" uid="uid://bm1iq6s5wjach" path="res://src/UI/PauseMenu.tscn" id="4_bxovd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wxl7w"]
 vertices = PackedVector2Array(379, 268, 493, 416, 522, 496, 289, 496, 308, 278, 879, 141, 832, 136, 850, 57, 955, 63, 25, 490, 19, 248, 232, 263, 399, 47, 589, 52, 651, 140, 668, 206, 525, 306, 1088, 170, 1103, 377, 1085, 496, 809, 498, 792, 316, 887, 201, 249, 162, 76, 96, 197, 73)
@@ -53,3 +54,8 @@ stage = 2
 
 [node name="Player" parent="." instance=ExtResource("2_g78at")]
 position = Vector2(485, 90)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PauseMenu" parent="UILayer" instance=ExtResource("4_bxovd")]

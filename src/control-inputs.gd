@@ -5,10 +5,6 @@ extends Node
 
 
 ##		Built-in Functions		################################################
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 # Called when there is an input event
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
@@ -23,9 +19,11 @@ func _input(event: InputEvent) -> void:
 		image.save_png(ScreenshotPath + fn)
 	
 	if event.is_action("zoom_in"):
-		_zoom(-1)
+		pass
+		#_zoom(-1)
 	elif event.is_action("zoom_out"):
-		_zoom(1)
+		pass
+		#_zoom(1)
 	elif event is InputEventMouseButton and event.pressed:
 		var colObj = null #cameraRay.get_collider()
 		if colObj and colObj.has_method("Interact"):
@@ -33,8 +31,4 @@ func _input(event: InputEvent) -> void:
 
 
 ##		Public Functions		################################################
-
-
 ##		Private Functions		################################################
-func _zoom(dir:float) -> void:
-	pass

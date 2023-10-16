@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dlgu5rg7b1wt8"]
+
+[node name="FreeCam" type="Marker2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.4
+drag_top_margin = 0.3
+drag_right_margin = 0.4
+drag_bottom_margin = 0.3
+editor_draw_limits = true
+editor_draw_drag_margin = true

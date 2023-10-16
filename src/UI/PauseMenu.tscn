@@ -9,8 +9,11 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.156863, 0.156863, 0.156863, 0.392157)
 script = ExtResource("2")
+metadata/_edit_use_anchors_ = true
 
 [node name="Cntr" type="CenterContainer" parent="."]
 layout_mode = 0

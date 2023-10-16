@@ -18,7 +18,8 @@ var water:float = 100
 @export var stage3:Texture2D
 @export var stage4:Texture2D
 @export var stage5:Texture2D
-@onready var map = [stage1, stage2, stage3, stage4, stage5]
+# Yeah... null isn't needed anymore. I thought I was going to use 0 as bare soil
+@onready var map = [null, stage1, stage2, stage3, stage4, stage5]
 
 
 ##		Built-in Functions		################################################
@@ -89,7 +90,7 @@ func _grow() -> void:
 	_updateSprite()
 
 func _updateSprite():
-	$plant.texture = map[stage - 1]
+	$plant.texture = map[stage]
 
 ##		Signal Listeners		################################################
 func _onBodyEntered(body:CollisionObject2D):

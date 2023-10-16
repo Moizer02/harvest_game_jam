@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dvjpxdnuu5knt" path="res://art/star.png" id="9_2b5eo"]
 [ext_resource type="Texture2D" uid="uid://cx8ujmvjfytdh" path="res://art/dialog-water.png" id="10_67eho"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g13ib"]
-size = Vector2(32, 32)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_it6rj"]
+radius = 14.0
 
 [sub_resource type="Curve" id="Curve_xij36"]
 _data = [Vector2(0, 0.105263), 0.0, 0.0, 0, 0, Vector2(0.824176, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.0491, 0.0, 0, 0]
@@ -32,7 +32,7 @@ stage4 = ExtResource("3_pj28a")
 stage5 = ExtResource("7_yonim")
 
 [node name="shape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_g13ib")
+shape = SubResource("CapsuleShape2D_it6rj")
 
 [node name="soil" type="Sprite2D" parent="."]
 position = Vector2(0, -4)

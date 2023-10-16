@@ -16,13 +16,17 @@ config/features=PackedStringArray("4.1", "GL Compatibility")
 boot_splash/fullsize=false
 config/icon="res://icon.svg"
 
-[autoload]
-
-PauseMenu="*res://src/UI/PauseMenu.tscn"
-
 [display]
 
-window/stretch/mode="viewport"
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/stretch/scale=2.0
+
+[gui]
+
+fonts/dynamic_fonts/use_oversampling=false
 
 [input]
 

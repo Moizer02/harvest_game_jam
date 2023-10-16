@@ -1,26 +1,30 @@
 [gd_scene load_steps=4 format=3 uid="uid://csw6wc8p75aei"]
 
-[ext_resource type="Texture2D" uid="uid://2y8csvilgprn" path="res://art/character.png" id="1_2focb"]
 [ext_resource type="Script" path="res://src/Player/player.gd" id="1_l4opt"]
+[ext_resource type="Texture2D" uid="uid://ct6ysf76v6ntm" path="res://art/character_bg.png" id="2_xnpau"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljq33"]
-size = Vector2(14.7153, 29.4307)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31wkh"]
+radius = 15.0
+height = 96.0
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(1.49504, 1.49504)
 script = ExtResource("1_l4opt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-1.39539e-07, -1.51499e-06)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_ljq33")
+shape = SubResource("CapsuleShape2D_31wkh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_2focb")
+texture = ExtResource("2_xnpau")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(1, 1)
-zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
 position_smoothing_speed = 12.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.4
+drag_top_margin = 0.3
+drag_right_margin = 0.4
+drag_bottom_margin = 0.3
+editor_draw_limits = true
+editor_draw_drag_margin = true
