@@ -6,9 +6,9 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	get_input(delta)
-	self.move_and_slide()
+	movement_handler(delta)
 
-func get_input(delta):
+func movement_handler(delta):
 	var input_direction = Input.get_vector("movement_left", "movement_right", "movement_up", "movement_down")
 	self.velocity = input_direction * (speed * 100) * delta
+	self.move_and_slide()
