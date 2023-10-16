@@ -7,7 +7,7 @@ func _ready():
 func _process(_delta):
 	pass
 
-func _on_click_area_input_event(viewport, event, shape_idx):
+func _on_click_area_input_event(_viewport, event, _shape_idx):
 	if !event.is_pressed():
 		return
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
