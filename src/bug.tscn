@@ -10,6 +10,7 @@ height = 6.0
 
 [node name="Bug" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_6cvqa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -23,13 +24,17 @@ shape = SubResource("CapsuleShape2D_dyou1")
 [node name="SplatFX" type="CPUParticles2D" parent="."]
 emitting = false
 one_shot = true
+speed_scale = 2.0
 explosiveness = 1.0
+local_coords = true
 texture = ExtResource("3_vafjb")
-direction = Vector2(0, -1)
+direction = Vector2(-1, 0)
 spread = 90.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 35.0
+gravity = Vector2(30, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 45.0
+linear_accel_min = -35.0
+linear_accel_max = -35.0
 scale_amount_min = 0.3
 scale_amount_max = 0.3
 color = Color(0, 0, 0, 0.607843)

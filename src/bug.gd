@@ -83,12 +83,11 @@ func Kill():
 	interval = 0
 	SetDestination(position)
 	ClearTarget()
-	$CollisionShape2D.disabled = false
+	$CollisionShape2D.disabled = true
 	# @TODO: play killed sound effect
-	# @TODO: release particles
 	$SplatFX.emitting = true
 	
-	await get_tree().create_timer(2, false)
+	await get_tree().create_timer(2, false).timeout
 	queue_free()
 
 

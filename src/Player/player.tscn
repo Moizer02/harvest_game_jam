@@ -9,7 +9,7 @@ height = 96.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.523634, 0.523634)
-collision_mask = 12
+collision_mask = 14
 script = ExtResource("1_l4opt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

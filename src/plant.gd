@@ -39,13 +39,6 @@ func _process(delta):
 	if stateTick > 15:
 		stateTick = 0
 		_grow()
-	
-	# despawn
-	if stage == 5:
-		interval += delta
-		if interval > 5:
-			stage = 0
-			_updateSprite()
 
 
 ##		Public Functions		################################################
@@ -77,6 +70,9 @@ func Plant():
 func Harvest():
 	if stage != 4: return
 	stage = 5
+	_updateSprite()
+	await get_tree().create_timer(6, false).timeout
+	stage = 0
 	_updateSprite()
 
 # Refill the plant's 

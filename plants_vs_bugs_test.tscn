@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cu2petadfpyqi"]
+[gd_scene load_steps=7 format=3 uid="uid://cu2petadfpyqi"]
 
 [ext_resource type="PackedScene" uid="uid://cls1afm7ycghd" path="res://src/bug.tscn" id="1_4nbmk"]
 [ext_resource type="PackedScene" uid="uid://h6jvspaio76m" path="res://src/plant.tscn" id="2_ejuhw"]
 [ext_resource type="PackedScene" uid="uid://csw6wc8p75aei" path="res://src/Player/player.tscn" id="2_g78at"]
+[ext_resource type="PackedScene" uid="uid://dtt2w6w15fuk5" path="res://src/bug_nest.tscn" id="3_jhyrh"]
 [ext_resource type="PackedScene" uid="uid://bm1iq6s5wjach" path="res://src/UI/PauseMenu.tscn" id="4_bxovd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wxl7w"]
@@ -22,22 +23,22 @@ navigation_polygon = SubResource("NavigationPolygon_wxl7w")
 [node name="bugs" type="Node2D" parent="."]
 
 [node name="Bug" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(189, 352)
+position = Vector2(162, 463)
 
 [node name="Bug2" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(610, 178)
+position = Vector2(124, 375)
 
 [node name="Bug3" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(554, 136)
+position = Vector2(170, 404)
 
 [node name="Bug4" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(588, 187)
+position = Vector2(83, 445)
 
 [node name="Bug5" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(466, 161)
+position = Vector2(97, 402)
 
 [node name="Bug6" parent="bugs" instance=ExtResource("1_4nbmk")]
-position = Vector2(710, 223)
+position = Vector2(191, 463)
 
 [node name="plants" type="Node2D" parent="."]
 
@@ -51,6 +52,9 @@ position = Vector2(589, 50)
 [node name="Plant3" parent="plants" instance=ExtResource("2_ejuhw")]
 position = Vector2(494, 299)
 stage = 2
+
+[node name="BugNest" parent="." instance=ExtResource("3_jhyrh")]
+position = Vector2(131, 441)
 
 [node name="Player" parent="." instance=ExtResource("2_g78at")]
 position = Vector2(485, 90)
