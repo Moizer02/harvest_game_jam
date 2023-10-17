@@ -14396,10 +14396,11 @@ _data = {
 }
 
 [node name="Map" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ktxqq")
 
 [node name="TileMap" type="TileMap" parent="."]
-unique_name_in_owner = true
+y_sort_enabled = true
 tile_set = SubResource("TileSet_pgo33")
 format = 2
 layer_0/name = "Ground"
@@ -14445,7 +14446,7 @@ position = Vector2(466, 161)
 [node name="Bug6" parent="." instance=ExtResource("1_nph2d")]
 position = Vector2(948, 292)
 
-[node name="DayNightCycler" type="Node2D" parent="."]
+[node name="DayNightCycler" type="Node" parent="."]
 
 [node name="NightLight" type="DirectionalLight2D" parent="DayNightCycler"]
 color = Color(1, 1, 1, 0.776471)
@@ -14459,10 +14460,10 @@ libraries = {
 "": SubResource("AnimationLibrary_yisyx")
 }
 
-[node name="Player" parent="." instance=ExtResource("7_2lufd")]
-position = Vector2(997, 51)
-
 [node name="Market" parent="." instance=ExtResource("10_i0d68")]
 position = Vector2(1248, 84)
+
+[node name="Player" parent="." instance=ExtResource("7_2lufd")]
+position = Vector2(497, 148)
 
 [connection signal="timeout" from="DayNightCycler/Timer" to="." method="_on_night_timer_timeout"]
