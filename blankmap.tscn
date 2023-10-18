@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bud56yg5nhvas"]
+[gd_scene load_steps=24 format=3 uid="uid://bud56yg5nhvas"]
 
 [ext_resource type="PackedScene" uid="uid://cls1afm7ycghd" path="res://src/bug.tscn" id="1_nph2d"]
 [ext_resource type="Texture2D" uid="uid://c260yq1cnxiqw" path="res://art/lpc-plant-repack/plant repack.png" id="2_xssl6"]
@@ -11,8 +11,9 @@
 [ext_resource type="Script" path="res://src/tilemap.gd" id="7_vj0hi"]
 [ext_resource type="Texture2D" uid="uid://dfqj0d334ubeg" path="res://art/medieval-theme/fence_medieval.png" id="8_4pvja"]
 [ext_resource type="PackedScene" uid="uid://v53orbj3ogvg" path="res://src/market/market.tscn" id="10_i0d68"]
-[ext_resource type="PackedScene" uid="uid://cr4ji0vtr7647" path="res://src/UI/ui_hub.tscn" id="13_16nlk"]
-[ext_resource type="PackedScene" uid="uid://tcqjre7mvb57" path="res://src/day_night_cycler.tscn" id="14_triia"]
+[ext_resource type="PackedScene" path="res://src/UI/ui_hub.tscn" id="13_16nlk"]
+[ext_resource type="PackedScene" uid="uid://bm1iq6s5wjach" path="res://src/UI/PauseMenu.tscn" id="13_y8ev8"]
+[ext_resource type="PackedScene" path="res://src/day_night_cycler.tscn" id="14_triia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7nb53"]
 texture = ExtResource("2_xssl6")
@@ -14415,6 +14416,8 @@ marketui = NodePath("../UIHub/MarketUI")
 position = Vector2(497, 148)
 
 [node name="UIHub" parent="." instance=ExtResource("13_16nlk")]
+
+[node name="PauseMenu" parent="UIHub" instance=ExtResource("13_y8ev8")]
 
 [node name="DayNightCycler" parent="." instance=ExtResource("14_triia")]
 

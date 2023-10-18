@@ -3,7 +3,7 @@ extends StaticBody2D
 const DRY_SOIL = preload("res://art/crops-v2/empty-soil-dry.png")
 const WET_SOIL = preload("res://art/crops-v2/empty-soil.png")
 
-##		Class Variables			################################################
+####		Class Variables			############################################
 var speed:Vector2 = Vector2(45.0, 30.0)
 var destination:Vector2
 var target:Node2D # target is a destination that has something there at the end
@@ -22,7 +22,7 @@ var water:float = 100
 @onready var map = [null, stage1, stage2, stage3, stage4, stage5]
 
 
-##		Built-in Functions		################################################
+####		Built-in Functions		############################################
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_updateSprite()
@@ -41,8 +41,8 @@ func _process(delta):
 		_grow()
 
 
-##		Public Functions		################################################
-# Used by bugs to latch onto this plant.
+####		Public Functions		############################################
+## Used by bugs to latch onto this plant.
 func AddBug(newBug:CharacterBody2D):
 	if debounce: return
 	debounce = true
@@ -56,17 +56,18 @@ func AddBug(newBug:CharacterBody2D):
 func GetBugsInfesting() -> int:
 	return bugs
 
+## Used by Player to remove any bugs infesting this plant.
 func KillBugs():
 	bugs = 0
 	$infectedFX.emitting = false
 
-# Sow a new seed on this spot to start growing.
+## Sow a new seed on this spot to start growing.
 func Plant():
 	if stage != 0: return
 	stage = 1
 	_updateSprite()
 
-# Harvest the plant once it is fully ripe.
+## Harvest the plant once it is fully ripe.
 func Harvest():
 	if stage != 4: return
 	stage = 5
@@ -75,11 +76,11 @@ func Harvest():
 	stage = 0
 	_updateSprite()
 
-# Refill the plant's 
+## Refill the plant's 
 func Water(amount:float=100.0) -> void:
 	water = clamp(water + amount, 0, 100.0)
 
-##		Private Functions		################################################
+####		Private Functions		############################################
 func _grow() -> void:
 	if stage == 0:
 		pass
@@ -91,4 +92,4 @@ func _grow() -> void:
 func _updateSprite():
 	$plant.texture = map[stage]
 
-##		Signal Listeners		################################################
+####		Signal Listeners		############################################

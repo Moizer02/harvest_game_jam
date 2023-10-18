@@ -1,18 +1,18 @@
 extends Node2D
 
-##		Class Variables			################################################
-
+####		Class Variables			############################################
 ## Number of seconds between spawning another bug.
 @export var spawnRate:float = 20
 
 ## Type of creature to spawn.
 @export var entity:PackedScene
 
+var enabled:bool = true
 var seconds:float = randf() - 1
 @onready var bugContainer:Node2D = get_tree().current_scene.get_node_or_null("bugs")
 
 
-##		Built-in Functions		################################################
+####		Built-in Functions		############################################
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,10 +25,15 @@ func _process(delta):
 		_spawnEntity(2)
 
 
-##		Public Functions		################################################
+####		Public Functions		############################################
+## Used by characters to get rid of the nest.
+func Destroy():
+	enabled = false
+	# @TODO: particles / animation when destroyed
+	await get_tree().create_timer(1, false).timeout
+	queue_free()
 
-
-##		Private Functions		################################################
+####		Private Functions		############################################
 func _spawnEntity(num:int=1) -> void:
 	if not bugContainer:
 		push_error("Scene is missing a bugs container node!")
@@ -46,4 +51,4 @@ func _spawnEntity(num:int=1) -> void:
 		else:
 			instance.position = global_position + offset
 
-##		Signal Listeners		################################################
+####		Signal Listeners		############################################
