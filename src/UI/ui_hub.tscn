@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr4ji0vtr7647"]
+
+[ext_resource type="Script" path="res://src/UI/ui_hub.gd" id="1_plrym"]
+[ext_resource type="PackedScene" uid="uid://det1gt2stgy71" path="res://src/UI/market_ui.tscn" id="2_uw566"]
+
+[node name="UIHub" type="CanvasLayer"]
+script = ExtResource("1_plrym")
+
+[node name="MarketUI" parent="." instance=ExtResource("2_uw566")]

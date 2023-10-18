@@ -9,7 +9,6 @@ height = 18.4033
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
-scale = Vector2(0.523634, 0.523634)
 collision_mask = 12
 script = ExtResource("1_l4opt")
 
@@ -26,8 +25,10 @@ editor_draw_drag_margin = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3.47246)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_31wkh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -45.4865)
+position = Vector2(0, -25)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_xnpau")

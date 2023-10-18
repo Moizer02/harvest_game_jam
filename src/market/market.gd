@@ -1,5 +1,6 @@
 extends StaticBody2D
 
+@export var marketui: ColorRect
 
 func _ready():
 	pass
@@ -7,17 +8,12 @@ func _ready():
 func _process(_delta):
 	pass
 
-func _on_click_area_input_event(_viewport, event, _shape_idx):
-	if !event.is_pressed():
-		return
-	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
-		open_market_menu()
 
-func open_market_menu():
-	$AudioStreamPlayer2D.play()
+func _on_click_area_body_entered(body):
+	if body.name == "Player":
+		marketui.visible = true
+		$AudioStreamPlayer2D.play()
 
-func _on_range_area_area_entered(_area):
-	pass
-
-func _on_range_area_area_exited(_area):
-	pass
+func _on_click_area_body_exited(body):
+	if body.name == "Player":
+		marketui.visible = false
