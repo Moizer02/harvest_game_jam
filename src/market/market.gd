@@ -16,8 +16,8 @@ func _on_click_area_input_event(_viewport, event, _shape_idx):
 func open_market_menu():
 	$AudioStreamPlayer2D.play()
 
-func _on_range_area_area_entered(area):
+func _on_range_area_area_entered(_area):
 	pass
 
-func _on_range_area_area_exited(area):
+func _on_range_area_area_exited(_area):
 	pass

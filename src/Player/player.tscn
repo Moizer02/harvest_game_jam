@@ -4,22 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://ct6ysf76v6ntm" path="res://art/character_bg.png" id="2_xnpau"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31wkh"]
-radius = 15.0
-height = 96.0
+radius = 9.20165
+height = 18.4033
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 scale = Vector2(0.523634, 0.523634)
-collision_mask = 14
+collision_mask = 12
 script = ExtResource("1_l4opt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.39539e-07, -1.51499e-06)
-shape = SubResource("CapsuleShape2D_31wkh")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_xnpau")
-
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -45.4865)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 drag_horizontal_enabled = true
@@ -28,3 +23,11 @@ drag_left_margin = 0.25
 drag_right_margin = 0.25
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.47246)
+shape = SubResource("CapsuleShape2D_31wkh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -45.4865)
+texture = ExtResource("2_xnpau")
