@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtt2w6w15fuk5"]
+[gd_scene load_steps=6 format=3 uid="uid://dtt2w6w15fuk5"]
 
 [ext_resource type="Texture2D" uid="uid://bna11bvvh857b" path="res://art/crops-v2/bugnest.png" id="1_hvtyg"]
+[ext_resource type="Script" path="res://src/BugNest.gd" id="1_ku2d0"]
+[ext_resource type="PackedScene" uid="uid://cls1afm7ycghd" path="res://src/bug.tscn" id="2_4pb1p"]
 [ext_resource type="Texture2D" uid="uid://dp8ytdxv51i1e" path="res://art/Bug2.png" id="2_k2dwc"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w314a"]
+radius = 14.0
+
 [node name="BugNest" type="Node2D"]
+script = ExtResource("1_ku2d0")
+entity = ExtResource("2_4pb1p")
 
 [node name="Shell" type="Sprite2D" parent="."]
 texture = ExtResource("1_hvtyg")
@@ -24,3 +31,9 @@ angle_max = 180.0
 scale_amount_min = 0.3
 scale_amount_max = 0.4
 color = Color(0.2, 0.2, 0.2, 0.698039)
+
+[node name="Collider" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_w314a")
