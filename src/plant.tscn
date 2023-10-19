@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://h6jvspaio76m"]
+[gd_scene load_steps=17 format=3 uid="uid://h6jvspaio76m"]
 
 [ext_resource type="Script" path="res://src/plant.gd" id="1_5ukbh"]
 [ext_resource type="Texture2D" uid="uid://b0pak6fxyh20b" path="res://art/crops-v2/empty-soil.png" id="2_bdbel"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" path="res://src/plant.gdshader" id="8_aq1cw"]
 [ext_resource type="Texture2D" uid="uid://dvjpxdnuu5knt" path="res://art/star.png" id="9_2b5eo"]
 [ext_resource type="Texture2D" uid="uid://cx8ujmvjfytdh" path="res://art/dialog-water.png" id="10_67eho"]
+[ext_resource type="PackedScene" uid="uid://bpsa32njlgavo" path="res://src/UI/plant_tending_ui.tscn" id="12_j3f05"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_it6rj"]
 radius = 12.0
@@ -22,6 +23,9 @@ shader = ExtResource("8_aq1cw")
 [sub_resource type="Curve" id="Curve_xij36"]
 _data = [Vector2(0, 0.105263), 0.0, 0.0, 0, 0, Vector2(0.824176, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.0491, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jilpf"]
+radius = 16.0
 
 [node name="Plant" type="StaticBody2D"]
 collision_layer = 2
@@ -84,3 +88,20 @@ hue_variation_max = 1.0
 position = Vector2(25, -23)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_67eho")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_jilpf")
+
+[node name="PlantTendingUI" parent="." instance=ExtResource("12_j3f05")]
+visible = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="PlantTendingUI/WaterBar/WaterButton" to="." method="_on_water_button_pressed"]
+[connection signal="pressed" from="PlantTendingUI/BugBar/BugButton" to="." method="_on_bug_button_pressed"]
+[connection signal="pressed" from="PlantTendingUI/HarvestBar/HarvestButton" to="." method="_on_harvest_button_pressed"]
+
+[editable path="PlantTendingUI"]

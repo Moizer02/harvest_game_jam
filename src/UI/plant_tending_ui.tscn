@@ -1,0 +1,191 @@
+[gd_scene load_steps=12 format=3 uid="uid://bpsa32njlgavo"]
+
+[ext_resource type="FontFile" uid="uid://20x014qdrdni" path="res://src/fonts/kenney_kenney-fonts/Fonts/Kenney Blocks.ttf" id="1_g80yy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6lf4"]
+bg_color = Color(0.898039, 0.352941, 0.780392, 0.733333)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_d8sgh"]
+font = ExtResource("1_g80yy")
+
+[sub_resource type="LabelSettings" id="LabelSettings_3n2rt"]
+font = ExtResource("1_g80yy")
+font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh381"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7ekc"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0w7w"]
+bg_color = Color(0.839216, 0, 0.235294, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shsx2"]
+bg_color = Color(0, 0.560784, 0, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flilv"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sk0wv"]
+bg_color = Color(0.662745, 0.219608, 0.0941176, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jr45y"]
+
+[node name="PlantTendingUI" type="Panel"]
+custom_minimum_size = Vector2(240, 110)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6lf4")
+
+[node name="PlantName" type="Label" parent="."]
+layout_mode = 2
+offset_left = 62.0
+offset_right = 178.0
+offset_bottom = 27.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Plant name"
+label_settings = SubResource("LabelSettings_d8sgh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 24.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+text = "Withered"
+label_settings = SubResource("LabelSettings_3n2rt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WitherBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 43.0
+offset_right = 235.0
+offset_bottom = 50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_gh381")
+theme_override_styles/fill = SubResource("StyleBoxFlat_s7ekc")
+show_percentage = false
+
+[node name="WaterBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 57.0
+offset_right = 105.0
+offset_bottom = 62.0
+theme_override_styles/background = SubResource("StyleBoxFlat_t0w7w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_shsx2")
+show_percentage = false
+
+[node name="WaterButton" type="Button" parent="WaterBar"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 90.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("1_g80yy")
+theme_override_font_sizes/font_size = 8
+text = "tap to water"
+
+[node name="BugBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 57.0
+offset_right = 230.0
+offset_bottom = 62.0
+theme_override_styles/background = SubResource("StyleBoxFlat_flilv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sk0wv")
+show_percentage = false
+
+[node name="BugButton" type="Button" parent="BugBar"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 8.0
+offset_right = 76.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("1_g80yy")
+theme_override_font_sizes/font_size = 8
+text = "Kill Bugs"
+
+[node name="HarvestBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 101.0
+offset_right = 235.0
+offset_bottom = 106.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_jr45y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_shsx2")
+max_value = 4.0
+step = 1.0
+show_percentage = false
+
+[node name="HarvestButton" type="Button" parent="HarvestBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_g80yy")
+theme_override_font_sizes/font_size = 8
+disabled = true
+text = "harvest crop"

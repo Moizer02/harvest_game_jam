@@ -4,6 +4,7 @@ const DRY_SOIL = preload("res://art/crops-v2/empty-soil-dry.png")
 const WET_SOIL = preload("res://art/crops-v2/empty-soil.png")
 
 ####		Class Variables			############################################
+var withered: float = 0
 var speed:Vector2 = Vector2(45.0, 30.0)
 var destination:Vector2
 var target:Node2D # target is a destination that has something there at the end
@@ -29,6 +30,7 @@ func _ready():
 
 func _process(delta):
 	water = clamp(water - delta*2.0, 0, 100)
+	$PlantTendingUI/WaterBar.value = water
 	if water < 20:
 		$soil.texture = DRY_SOIL
 	else:
@@ -39,6 +41,12 @@ func _process(delta):
 	if stateTick > 15:
 		stateTick = 0
 		_grow()
+	
+	if bugs >= 1 || water <= 0:
+		withered = clamp(withered + 5 * delta, 0, 100)
+		$PlantTendingUI/WitherBar.value = withered
+		if withered == 100:
+			self.queue_free()
 
 
 ####		Public Functions		############################################
@@ -52,6 +60,7 @@ func AddBug(newBug:CharacterBody2D):
 	
 	await get_tree().create_timer(0.5, false).timeout
 	debounce = false
+	$PlantTendingUI/BugBar.value = bugs
 
 func GetBugsInfesting() -> int:
 	return bugs
@@ -82,6 +91,9 @@ func Water(amount:float=100.0) -> void:
 
 ####		Private Functions		############################################
 func _grow() -> void:
+	$PlantTendingUI/HarvestBar.value = stage
+	if $PlantTendingUI/HarvestBar.value == 4:
+		$PlantTendingUI/HarvestBar/HarvestButton.disabled = false
 	if stage == 0:
 		pass
 	elif stage < 4:
@@ -93,3 +105,23 @@ func _updateSprite():
 	$plant.texture = map[stage]
 
 ####		Signal Listeners		############################################
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == "Player":
+		$PlantTendingUI.visible = true
+
+func _on_area_2d_body_exited(body):
+	if body.name == "Player":
+		$PlantTendingUI.visible = false
+
+func _on_water_button_pressed():
+	Water(100)
+	$PlantTendingUI/WaterBar.value = water
+
+func _on_bug_button_pressed():
+	KillBugs()
+	$PlantTendingUI/BugBar.value = bugs
+
+func _on_harvest_button_pressed():
+	Harvest()

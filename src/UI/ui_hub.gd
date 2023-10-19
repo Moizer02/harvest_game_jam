@@ -16,3 +16,10 @@ func _process(delta):
 #func _input(event):
 #	if event.is_action_pressed("ui_accept"):
 #		$MarketUI.visible = !$MarketUI.visible
+
+
+func set_ui_visibility(name: String, state: bool):
+	var childs = self.get_children(false)
+	for i in childs:
+		if i.name == name:
+			i.visible = state
