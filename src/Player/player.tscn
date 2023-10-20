@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://csw6wc8p75aei"]
+[gd_scene load_steps=6 format=3 uid="uid://csw6wc8p75aei"]
 
 [ext_resource type="Script" path="res://src/Player/player.gd" id="1_l4opt"]
 [ext_resource type="Texture2D" uid="uid://ct6ysf76v6ntm" path="res://art/character_bg.png" id="2_xnpau"]
+[ext_resource type="Texture2D" uid="uid://brgxor71tc06r" path="res://art/FlashlightBeam.png" id="3_pn4yq"]
+[ext_resource type="Texture2D" uid="uid://crhgnhvwdsb32" path="res://art/AreaGlow.png" id="4_2c2px"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31wkh"]
 radius = 9.20165
@@ -30,3 +32,19 @@ shape = SubResource("CapsuleShape2D_31wkh")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_xnpau")
+
+[node name="Flashlight" type="PointLight2D" parent="."]
+visible = false
+energy = 2.0
+shadow_enabled = true
+texture = ExtResource("3_pn4yq")
+offset = Vector2(0, 60)
+texture_scale = 1.2
+height = 1.0
+
+[node name="glow" type="PointLight2D" parent="."]
+energy = 0.5
+texture = ExtResource("4_2c2px")
+offset = Vector2(0, 18)
+texture_scale = 2.0
+height = 1.0
