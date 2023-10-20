@@ -1,18 +1,10 @@
-extends StaticBody2D
-
-const DRY_SOIL = preload("res://art/crops-v2/empty-soil-dry.png")
-const WET_SOIL = preload("res://art/crops-v2/empty-soil.png")
+extends Node2D
 
 ####		Class Variables			############################################
 var withered: float = 0
-var speed:Vector2 = Vector2(45.0, 30.0)
-var destination:Vector2
-var target:Node2D # target is a destination that has something there at the end
-var interval:float = randf()
 var stateTick:float = randf()
 var debounce:bool = false
 var bugs:int = 0
-var water:float = 100
 @export_range(0, 5) var stage:int = 0
 @export var stage1:Texture2D
 @export var stage2:Texture2D
@@ -21,6 +13,8 @@ var water:float = 100
 @export var stage5:Texture2D
 # Yeah... null isn't needed anymore. I thought I was going to use 0 as bare soil
 @onready var map = [null, stage1, stage2, stage3, stage4, stage5]
+@onready var dayCycle = get_tree().current_scene.get_node_or_null("DayNightCycler")
+@onready var soil = get_parent()
 
 
 ####		Built-in Functions		############################################
@@ -29,24 +23,21 @@ func _ready():
 	_updateSprite()
 
 func _process(delta):
-	water = clamp(water - delta*2.0, 0, 100)
-	$PlantTendingUI/WaterBar.value = water
-	if water < 20:
-		$soil.texture = DRY_SOIL
-	else:
-		$soil.texture = WET_SOIL
-	$needwater.visible = water < 50
-	
-	stateTick += delta * (0.05 + (water/120.0) * (2.0 - clampf(bugs, 0, 2)/2.0))
+	# Throttle growth speed by Water, Bugs, & Light
+	if dayCycle and dayCycle.is_day:
+		stateTick += delta * (0.05 + (soil.water/120.0) * (2.0 - clampf(bugs, 0, 2)/2.0))
 	if stateTick > 15:
 		stateTick = 0
 		_grow()
 	
-	if bugs >= 1 || water <= 0:
+	if bugs >= 1 or soil.water <= 0:
 		withered = clamp(withered + 5 * delta, 0, 100)
 		$PlantTendingUI/WitherBar.value = withered
-		if withered == 100:
-			self.queue_free()
+		if withered >= 100:
+			withered = 0
+			stage = 0
+			_updateSprite()
+			# @TODO: become an infested BugNest
 
 
 ####		Public Functions		############################################
@@ -57,10 +48,10 @@ func AddBug(newBug:CharacterBody2D):
 	bugs += 1
 	newBug.queue_free()
 	$infectedFX.emitting = true
+	$PlantTendingUI/BugBar.value = bugs
 	
 	await get_tree().create_timer(0.5, false).timeout
 	debounce = false
-	$PlantTendingUI/BugBar.value = bugs
 
 func GetBugsInfesting() -> int:
 	return bugs
@@ -71,32 +62,33 @@ func KillBugs():
 	$infectedFX.emitting = false
 
 ## Sow a new seed on this spot to start growing.
+## Only works when the plant is empty (growth stage = 0).
 func Plant():
 	if stage != 0: return
-	stage = 1
-	_updateSprite()
+	stage = 0
 
 ## Harvest the plant once it is fully ripe.
+## @TODO: remove
 func Harvest():
 	if stage != 4: return
 	stage = 5
 	_updateSprite()
 	await get_tree().create_timer(6, false).timeout
-	stage = 0
-	_updateSprite()
+	queue_free()
 
-## Refill the plant's 
+## Refill the plant's water meter
+## @TODO: remove. This belongs in soil.gd
 func Water(amount:float=100.0) -> void:
-	water = clamp(water + amount, 0, 100.0)
+	soil.water = clamp(soil.water + amount, 0, 100.0)
 
 ####		Private Functions		############################################
 func _grow() -> void:
-	$PlantTendingUI/HarvestBar.value = stage
-	if $PlantTendingUI/HarvestBar.value == 4:
-		$PlantTendingUI/HarvestBar/HarvestButton.disabled = false
-	if stage == 0:
-		pass
-	elif stage < 4:
+	var harvestBar = get_node("../UI/PlantTendingUI/HarvestBar")
+	
+	harvestBar.value = stage
+	if harvestBar.value == 4:
+		harvestBar.get_node("HarvestButton").disabled = false
+	if stage < 4:
 		stage += 1
 		$growFX.emitting = true
 	_updateSprite()
@@ -117,7 +109,7 @@ func _on_area_2d_body_exited(body):
 
 func _on_water_button_pressed():
 	Water(100)
-	$PlantTendingUI/WaterBar.value = water
+	$PlantTendingUI/WaterBar.value = soil.water
 
 func _on_bug_button_pressed():
 	KillBugs()

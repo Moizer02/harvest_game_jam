@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bud56yg5nhvas"]
+[gd_scene load_steps=23 format=3 uid="uid://bud56yg5nhvas"]
 
 [ext_resource type="PackedScene" uid="uid://cls1afm7ycghd" path="res://src/bug.tscn" id="1_nph2d"]
 [ext_resource type="Texture2D" uid="uid://c260yq1cnxiqw" path="res://art/lpc-plant-repack/plant repack.png" id="2_xssl6"]
@@ -12,8 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dfqj0d334ubeg" path="res://art/medieval-theme/fence_medieval.png" id="8_4pvja"]
 [ext_resource type="PackedScene" uid="uid://v53orbj3ogvg" path="res://src/market/market.tscn" id="10_i0d68"]
 [ext_resource type="PackedScene" uid="uid://cr4ji0vtr7647" path="res://src/UI/ui_hub.tscn" id="13_16nlk"]
-[ext_resource type="PackedScene" uid="uid://tcqjre7mvb57" path="res://src/day_night_cycler.tscn" id="14_triia"]
-[ext_resource type="PackedScene" uid="uid://h6jvspaio76m" path="res://src/plant.tscn" id="15_wxehg"]
+[ext_resource type="PackedScene" path="res://src/day_night_cycler.tscn" id="14_triia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7nb53"]
 texture = ExtResource("2_xssl6")
@@ -14383,10 +14382,6 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
 script = ExtResource("7_vj0hi")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.427451, 0.658824, 0.396078, 1)
-polygon = PackedVector2Array(67, 97, 8, 244, 18, 499, 537, 503, 504, 412, 533, 320, 787, 324, 800.433, 505.833, 1095, 509, 1112, 380, 1095, 157, 957, 52, 847, 50, 819, 143, 872, 149, 881, 194, 674, 195, 659, 133, 587, 44, 390, 37, 369, 259, 311, 271, 247, 259, 263, 162, 204, 58)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_36spj")
 
@@ -14399,15 +14394,6 @@ position = Vector2(528, 145)
 [node name="Bug3" parent="." instance=ExtResource("1_nph2d")]
 position = Vector2(430, 215)
 
-[node name="Bug4" parent="." instance=ExtResource("1_nph2d")]
-position = Vector2(588, 187)
-
-[node name="Bug5" parent="." instance=ExtResource("1_nph2d")]
-position = Vector2(466, 161)
-
-[node name="Bug6" parent="." instance=ExtResource("1_nph2d")]
-position = Vector2(948, 292)
-
 [node name="Market" parent="." node_paths=PackedStringArray("marketui") instance=ExtResource("10_i0d68")]
 position = Vector2(1248, 84)
 marketui = NodePath("../UIHub/MarketUI")
@@ -14418,9 +14404,5 @@ position = Vector2(497, 148)
 [node name="UIHub" parent="." instance=ExtResource("13_16nlk")]
 
 [node name="DayNightCycler" parent="." instance=ExtResource("14_triia")]
-
-[node name="Plant" parent="." instance=ExtResource("15_wxehg")]
-position = Vector2(334, 80)
-stage = 1
 
 [editable path="UIHub"]

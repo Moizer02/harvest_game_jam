@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://h6jvspaio76m"]
+[gd_scene load_steps=15 format=3 uid="uid://h6jvspaio76m"]
 
 [ext_resource type="Script" path="res://src/plant.gd" id="1_5ukbh"]
-[ext_resource type="Texture2D" uid="uid://b0pak6fxyh20b" path="res://art/crops-v2/empty-soil.png" id="2_bdbel"]
 [ext_resource type="Texture2D" uid="uid://du6j51e3ln4m" path="res://art/Bug.png" id="2_cgdj2"]
 [ext_resource type="Texture2D" uid="uid://cfg30y10kmwer" path="res://art/crops-v2/pumkin4.png" id="3_pj28a"]
 [ext_resource type="Texture2D" uid="uid://be528ypfydfve" path="res://art/crops-v2/pumkin1.png" id="3_tt8r1"]
@@ -13,10 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cx8ujmvjfytdh" path="res://art/dialog-water.png" id="10_67eho"]
 [ext_resource type="PackedScene" uid="uid://bpsa32njlgavo" path="res://src/UI/plant_tending_ui.tscn" id="12_j3f05"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_it6rj"]
-radius = 12.0
-height = 24.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yc1y2"]
 shader = ExtResource("8_aq1cw")
 
@@ -27,24 +22,13 @@ point_count = 3
 [sub_resource type="CircleShape2D" id="CircleShape2D_jilpf"]
 radius = 16.0
 
-[node name="Plant" type="StaticBody2D"]
-collision_layer = 2
-collision_mask = 5
-input_pickable = true
+[node name="Plant" type="Node2D"]
 script = ExtResource("1_5ukbh")
 stage1 = ExtResource("3_tt8r1")
 stage2 = ExtResource("4_5tckq")
 stage3 = ExtResource("5_eeqhe")
 stage4 = ExtResource("3_pj28a")
 stage5 = ExtResource("7_yonim")
-
-[node name="shape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-shape = SubResource("CapsuleShape2D_it6rj")
-
-[node name="soil" type="Sprite2D" parent="."]
-position = Vector2(0, -4)
-texture = ExtResource("2_bdbel")
 
 [node name="plant" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yc1y2")
@@ -85,11 +69,16 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 
 [node name="needwater" type="Sprite2D" parent="."]
+visible = false
+visibility_layer = 0
 position = Vector2(25, -23)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_67eho")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -3)

@@ -106,7 +106,7 @@ func _findNewTarget() -> void:
 	
 	if crops:
 		for crop in crops.get_children():
-			if not crop.has_method("GetBugsInfesting"): continue
+			if not crop.has_method("AddBug") or not crop.CanAddBug(): continue
 			weights.append([crop, 
 				global_position.distance_to(crop.global_position)/20.0 + 30*crop.GetBugsInfesting()])
 		
