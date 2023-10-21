@@ -6,6 +6,16 @@ var inventory:Dictionary = {
 	"pumpkinseed": {"val": 1, "max": 1},
 	"water": {"val": 5, "max": 5},
 }
+@onready var dayCycle = get_tree().current_scene.get_node_or_null("DayNightCycler")
+#@onready var mouse_enabled = Input.mouse_mode
+var step = {
+	"sinceLast": 0.0,
+	"interval": 0.38,
+	"pitchVari": 0.3,
+	"pitch": 1.0,
+}
+var move_keys:Vector2
+
 
 func _ready():
 	pass
@@ -14,12 +24,24 @@ func _physics_process(delta):
 	movement_handler(delta)
 
 func _process(delta):
-	pass
-	#@TODO: Flashlight.angle = angle_to_point(mouse position - Flashlight position)
+	if move_keys.length() > 0.05:
+		step.sinceLast += delta*move_keys.length()
+		if step.sinceLast >= step.interval:
+			step.sinceLast -= step.interval
+			$walk.pitch_scale = step.pitch + randf_range(-step.pitchVari, step.pitchVari)
+			$walk.play()
+	else:
+		step.sinceLast = step.interval
+	if is_instance_valid(dayCycle):
+		$Flashlight.enabled = not dayCycle.is_day
+		$glow.enabled = not dayCycle.is_day
+	# Set angle based on velocity (if no mouse available)
+	#$Flashlight.rotation = $Flashlight.position.angle_to_point(velocity.normalized()) - PI/2
+	$Flashlight.rotation = $Flashlight.position.angle_to_point(get_local_mouse_position()) - PI/2
 
 func movement_handler(delta):
-	var input_direction = Input.get_vector("movement_left", "movement_right", "movement_up", "movement_down")
-	self.velocity = input_direction * (speed * 100) * delta
+	move_keys = Input.get_vector("movement_left", "movement_right", "movement_up", "movement_down")
+	self.velocity = move_keys * (speed * 100) * delta
 	if self.move_and_slide():
 		var col = get_last_slide_collision().get_collider()
 		if col.has_method("Kill"):

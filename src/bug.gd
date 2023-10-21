@@ -9,11 +9,13 @@ enum STATES {
 
 ####		Class Variables			############################################
 var speed:Vector2 = Vector2(45.0, 30.0)
+var spdMod:Vector2 = Vector2(1.0, 1.0) # Multiplies with speed
 var destination:Vector2
 var target:Node2D # target is a destination that has something there at the end
 var interval:float = randf() - 1
 var stateTick:float = randf() - 1
 var state:STATES = STATES.Idle
+@onready var dayCycle = get_tree().current_scene.get_node_or_null("DayNightCycler")
 
 
 ####		Built-in Functions		############################################
@@ -25,6 +27,9 @@ func _physics_process(delta):
 	stateTick += delta
 	if stateTick > 1:
 		stateTick = 0
+		if dayCycle:
+			$glow.enabled = not dayCycle.is_day
+			
 		_updateState()
 	
 	# create idle roaming
@@ -84,7 +89,7 @@ func Kill():
 	SetDestination(position)
 	ClearTarget()
 	$CollisionShape2D.disabled = true
-	# @TODO: play killed sound effect
+	$crunch.play()
 	$SplatFX.emitting = true
 	
 	await get_tree().create_timer(2, false).timeout

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cls1afm7ycghd"]
+[gd_scene load_steps=7 format=3 uid="uid://cls1afm7ycghd"]
 
 [ext_resource type="Script" path="res://src/bug.gd" id="1_6cvqa"]
 [ext_resource type="Texture2D" uid="uid://dp8ytdxv51i1e" path="res://art/Bug2.png" id="2_s1ie1"]
 [ext_resource type="Texture2D" uid="uid://dvjpxdnuu5knt" path="res://art/star.png" id="3_vafjb"]
+[ext_resource type="Texture2D" uid="uid://crhgnhvwdsb32" path="res://art/AreaGlow.png" id="4_p4s6g"]
+[ext_resource type="AudioStream" uid="uid://6gxfvwwwdykc" path="res://sfx/crunch.7.ogg" id="5_wpeal"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dyou1"]
 radius = 3.0
@@ -38,3 +40,16 @@ linear_accel_max = -35.0
 scale_amount_min = 0.3
 scale_amount_max = 0.3
 color = Color(0, 0, 0, 0.607843)
+
+[node name="glow" type="PointLight2D" parent="."]
+color = Color(1, 0.0313726, 0.0470588, 1)
+energy = 2.0
+texture = ExtResource("4_p4s6g")
+offset = Vector2(0, -4)
+texture_scale = 0.5
+height = 1.0
+
+[node name="crunch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wpeal")
+volume_db = -3.0
+pitch_scale = 1.2
