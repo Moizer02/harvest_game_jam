@@ -10,19 +10,28 @@ config_version=5
 
 [application]
 
-config/name="Gwj 62-harvest"
+config/name="Farm B&G"
 run/main_scene="res://blankmap.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/image="res://art/Bug.png"
 boot_splash/fullsize=false
-config/icon="res://icon.svg"
+boot_splash/use_filter=false
+config/icon="res://art/Bug.png"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/resizable=false
+window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
 window/stretch/scale=2.0
 window/vsync/vsync_mode=0
+
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
 
 [gui]
 
@@ -70,4 +79,7 @@ movement_right={
 textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/ssao/quality=0
+environment/ssil/quality=0
+environment/volumetric_fog/use_filter=0
 environment/defaults/default_clear_color=Color(0.168627, 0.509804, 0.207843, 1)

@@ -1,17 +1,22 @@
 extends Node2D
+class_name Plant
+
+signal grew(stage:int)
+signal died
 
 ####		Class Variables			############################################
-var withered: float = 0
+var withered:float = 0
 var stateTick:float = randf()
 var debounce:bool = false
 var bugs:int = 0
+@export var cropType:String = "Pumpkin"
 @export_range(0, 5) var stage:int = 0
 @export var stage1:Texture2D
 @export var stage2:Texture2D
 @export var stage3:Texture2D
 @export var stage4:Texture2D
 @export var stage5:Texture2D
-# Yeah... null isn't needed anymore. I thought I was going to use 0 as bare soil
+# Can replace null with a new seedling if we make a texture for it.
 @onready var map = [null, stage1, stage2, stage3, stage4, stage5]
 @onready var dayCycle = get_tree().current_scene.get_node_or_null("DayNightCycler")
 @onready var soil = get_parent()
@@ -32,12 +37,8 @@ func _process(delta):
 	
 	if bugs >= 1 or soil.water <= 0:
 		withered = clamp(withered + 5 * delta, 0, 100)
-		$PlantTendingUI/WitherBar.value = withered
 		if withered >= 100:
-			withered = 0
-			stage = 0
-			_updateSprite()
-			# @TODO: become an infested BugNest
+			emit_signal("died")
 
 
 ####		Public Functions		############################################
@@ -48,7 +49,6 @@ func AddBug(newBug:CharacterBody2D):
 	bugs += 1
 	newBug.queue_free()
 	$infectedFX.emitting = true
-	$PlantTendingUI/BugBar.value = bugs
 	
 	await get_tree().create_timer(0.5, false).timeout
 	debounce = false
@@ -60,12 +60,6 @@ func GetBugsInfesting() -> int:
 func KillBugs():
 	bugs = 0
 	$infectedFX.emitting = false
-
-## Sow a new seed on this spot to start growing.
-## Only works when the plant is empty (growth stage = 0).
-func Plant():
-	if stage != 0: return
-	stage = 0
 
 ## Harvest the plant once it is fully ripe.
 ## @TODO: remove
@@ -83,13 +77,9 @@ func Water(amount:float=100.0) -> void:
 
 ####		Private Functions		############################################
 func _grow() -> void:
-	var harvestBar = get_node("../UI/PlantTendingUI/HarvestBar")
-	
-	harvestBar.value = stage
-	if harvestBar.value == 4:
-		harvestBar.get_node("HarvestButton").disabled = false
 	if stage < 4:
 		stage += 1
+		emit_signal("grew", stage)
 		$growFX.emitting = true
 	_updateSprite()
 
@@ -97,23 +87,3 @@ func _updateSprite():
 	$plant.texture = map[stage]
 
 ####		Signal Listeners		############################################
-
-
-func _on_area_2d_body_entered(body):
-	if body.name == "Player":
-		$PlantTendingUI.visible = true
-
-func _on_area_2d_body_exited(body):
-	if body.name == "Player":
-		$PlantTendingUI.visible = false
-
-func _on_water_button_pressed():
-	Water(100)
-	$PlantTendingUI/WaterBar.value = soil.water
-
-func _on_bug_button_pressed():
-	KillBugs()
-	$PlantTendingUI/BugBar.value = bugs
-
-func _on_harvest_button_pressed():
-	Harvest()

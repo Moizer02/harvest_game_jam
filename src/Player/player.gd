@@ -7,7 +7,6 @@ var inventory:Dictionary = {
 	"water": {"val": 5, "max": 5},
 }
 @onready var dayCycle = get_tree().current_scene.get_node_or_null("DayNightCycler")
-#@onready var mouse_enabled = Input.mouse_mode
 var step = {
 	"sinceLast": 0.0,
 	"interval": 0.38,

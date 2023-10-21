@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name Soil
 
 const DRY_SOIL = preload("res://art/crops-v2/empty-soil-dry.png")
 const WET_SOIL = preload("res://art/crops-v2/empty-soil.png")
@@ -16,22 +17,17 @@ var plant = null
 var tick:int = 0
 var debounce:bool = false
 var water:float = 100
+@onready var ui = $UI/PlantUI
 
 
 ####		Built-in Functions		############################################
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	if contains: Plant(contains)
-
 func _process(delta):
 	water = clamp(water - delta*2.0, 0, 100)
-	$UI/PlantTendingUI/WaterBar.value = water
+	ui.SetWater(water)
 	$soil.texture = DRY_SOIL if water < 20 else WET_SOIL
 	$needwater.visible = water < 50
-	tick = (tick + int(30*delta)) % 10
-	if CanAddBug() and tick == 0:
-		$PlantTendingUI/WitherBar.value = plant.withered
+	if CanAddBug():
+		ui.SetWither(plant.withered)
 
 
 ####		Public Functions		############################################
@@ -40,7 +36,7 @@ func _process(delta):
 func AddBug(newBug:CharacterBody2D):
 	if CanAddBug():
 		plant.AddBug(newBug)
-		$UI/PlantTendingUI/BugBar.value = plant.GetBugsInfesting()
+		ui.SetBugs(plant.GetBugsInfesting())
 
 func GetBugsInfesting() -> int:
 	if CanAddBug():
@@ -54,26 +50,25 @@ func CanAddBug() -> bool:
 
 ## Sow a new seed on this spot to start growing.
 ## Only works when the plant is empty (growth stage = 0).
-func Plant(newPlant:PackedScene):
+func PlantCrop(newPlant:PackedScene=contains):
 	if debounce: return
 	debounce = true
 	
-	# Only plant the new crop if this patch is empty or harvested.
-	# @TODO: remove the harvested check once plant harvesting is cleaned up.
-	if not plant or plant.has_method("Harvest") and plant.stage != 5:
+	if not is_instance_valid(plant):
 		plant = newPlant.instantiate()
 		
 		add_child(plant)
-		await get_tree().create_timer(0.01, false).timeout
-		if plant.has_method("Plant"):
-			plant.Plant()
+		if plant.has_method("Harvest"):
+			plant.connect("grew", _on_plant_grew)
+			plant.connect("died", _on_plant_died)
+			ui.SetPlanted(true)
 	
 	await get_tree().create_timer(0.3, false).timeout
 	debounce = false
 
 ## Harvest the plant once it is fully ripe.
 func Harvest():
-	if debounce or not plant or not plant.has_method("Harvest") or not plant.stage != 4: return
+	if debounce or not plant or not plant.has_method("Harvest") or plant.stage != 4: return
 	debounce = true
 	var plr = get_tree().current_scene.get_node_or_null("Player")
 	
@@ -82,10 +77,9 @@ func Harvest():
 	else:
 		plr.AddItem(plant.cropType)
 	plant.Harvest()
-	$UI/PlantTendingUI/HarvestBar/HarvestButton.disabled = true
-	$UI/PlantTendingUI/HarvestBar.value = 0
 	
-	await get_tree().create_timer(0.3, false).timeout
+	await plant.tree_exited
+	ui.ResetDisplay()
 	debounce = false
 
 ## Refill the plant's 
@@ -98,20 +92,31 @@ func Water(amount:float=100.0) -> void:
 
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":
-		$UI/PlantTendingUI.visible = true
+		ui.visible = true
 
 func _on_area_2d_body_exited(body):
 	if body.name == "Player":
-		$UI/PlantTendingUI.visible = false
+		ui.visible = false
 
 func _on_water_button_pressed():
 	Water(100)
-	$UI/PlantTendingUI/WaterBar.value = water
+	ui.SetWater(water)
 
 func _on_bug_button_pressed():
 	if CanAddBug():
 		plant.KillBugs()
-		$UI/PlantTendingUI/BugBar.value = plant.GetBugsInfesting()
+		ui.SetBugs(plant.GetBugsInfesting())
 
 func _on_harvest_button_pressed():
 	Harvest()
+
+func _on_plantseed_button_pressed():
+	PlantCrop()
+
+func _on_plant_grew(stage):
+	ui.SetHarvest(stage)
+
+func _on_plant_died():
+	plant.queue_free()
+	ui.ResetDisplay()
+	# @TODO: replace it with an infested BugNest

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cruaq7v8jnqqx"]
+[gd_scene load_steps=8 format=3 uid="uid://cruaq7v8jnqqx"]
 
 [ext_resource type="Script" path="res://src/soil.gd" id="1_ifag8"]
+[ext_resource type="PackedScene" uid="uid://h6jvspaio76m" path="res://src/plant.tscn" id="2_m6mq1"]
 [ext_resource type="Texture2D" uid="uid://b0pak6fxyh20b" path="res://art/crops-v2/empty-soil.png" id="7_xkf7d"]
 [ext_resource type="Texture2D" uid="uid://cx8ujmvjfytdh" path="res://art/dialog-water.png" id="8_h53y1"]
 [ext_resource type="PackedScene" uid="uid://bpsa32njlgavo" path="res://src/UI/plant_tending_ui.tscn" id="9_mnobs"]
@@ -16,6 +17,7 @@ collision_layer = 2
 collision_mask = 5
 input_pickable = true
 script = ExtResource("1_ifag8")
+contains = ExtResource("2_m6mq1")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
@@ -40,15 +42,12 @@ shape = SubResource("CircleShape2D_jilpf")
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="PlantTendingUI" parent="UI" instance=ExtResource("9_mnobs")]
+[node name="PlantUI" parent="UI" instance=ExtResource("9_mnobs")]
 visible = false
-offset_top = -70.0
-offset_bottom = 70.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="pressed" from="UI/PlantTendingUI/WaterBar/WaterButton" to="." method="_on_water_button_pressed"]
-[connection signal="pressed" from="UI/PlantTendingUI/BugBar/BugButton" to="." method="_on_bug_button_pressed"]
-[connection signal="pressed" from="UI/PlantTendingUI/HarvestBar/HarvestButton" to="." method="_on_harvest_button_pressed"]
-
-[editable path="UI/PlantTendingUI"]
+[connection signal="pressed_debug" from="UI/PlantUI" to="." method="_on_bug_button_pressed"]
+[connection signal="pressed_harvest" from="UI/PlantUI" to="." method="_on_harvest_button_pressed"]
+[connection signal="pressed_seed" from="UI/PlantUI" to="." method="_on_plantseed_button_pressed"]
+[connection signal="pressed_water" from="UI/PlantUI" to="." method="_on_water_button_pressed"]
