@@ -1,10 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bud56yg5nhvas"]
+[gd_scene load_steps=21 format=3 uid="uid://bud56yg5nhvas"]
 
 [ext_resource type="PackedScene" uid="uid://cls1afm7ycghd" path="res://src/bug.tscn" id="1_nph2d"]
-[ext_resource type="Texture2D" uid="uid://c260yq1cnxiqw" path="res://art/lpc-plant-repack/plant repack.png" id="2_xssl6"]
 [ext_resource type="Texture2D" uid="uid://v2j0q6iertlq" path="res://art/lpc-tile-atlas/terrain_atlas.png" id="3_jkuty"]
 [ext_resource type="Texture2D" uid="uid://cgr6lxsoq8hyp" path="res://art/lpc-tile-atlas/base_out_atlas.png" id="5_0yjjm"]
-[ext_resource type="Texture2D" uid="uid://b4m12ncbncsaq" path="res://art/paths-town-objects/PathAndObjects.png" id="6_mjx00"]
 [ext_resource type="PackedScene" uid="uid://csw6wc8p75aei" path="res://src/Player/player.tscn" id="7_2lufd"]
 [ext_resource type="Texture2D" uid="uid://bprrej1axobhh" path="res://art/crops-v2/crops.png" id="7_jnqs5"]
 [ext_resource type="Texture2D" uid="uid://bsr5s8k42y5c5" path="res://art/medieval-theme/decorations-medieval.png" id="7_r548b"]
@@ -12,10 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dfqj0d334ubeg" path="res://art/medieval-theme/fence_medieval.png" id="8_4pvja"]
 [ext_resource type="PackedScene" uid="uid://v53orbj3ogvg" path="res://src/market/market.tscn" id="10_i0d68"]
 [ext_resource type="PackedScene" uid="uid://cr4ji0vtr7647" path="res://src/UI/ui_hub.tscn" id="13_16nlk"]
-[ext_resource type="PackedScene" path="res://src/day_night_cycler.tscn" id="14_triia"]
+[ext_resource type="PackedScene" uid="uid://tcqjre7mvb57" path="res://src/day_night_cycler.tscn" id="14_triia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7nb53"]
-texture = ExtResource("2_xssl6")
 1:0/0 = 0
 2:0/0 = 0
 6:0/0 = 0
@@ -7433,7 +7430,6 @@ texture = ExtResource("5_0yjjm")
 63:63/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0d8r"]
-texture = ExtResource("6_mjx00")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -14379,7 +14375,7 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array()
+layer_2/tile_data = PackedInt32Array(2162704, 1966081, 24, 2228240, 1966081, 25, 2293776, 1966081, 26, 2359312, 1966081, 27, 2424848, 1966081, 28, 2490384, 1966081, 29, 2162705, 2031617, 24, 2228241, 2031617, 25, 2293777, 2031617, 26, 2359313, 2031617, 27, 2424849, 2031617, 28, 2490385, 2031617, 29, 2162706, 2097153, 24, 2228242, 2097153, 25, 2293778, 2097153, 26, 2359314, 2097153, 27, 2424850, 2097153, 28, 2490386, 2097153, 29, 2162707, 2162689, 24, 2228243, 2162689, 25, 2293779, 2162689, 26, 2359315, 2162689, 27, 2424851, 2162689, 28, 2490387, 2162689, 29, 2359300, 1310721, 62, 2424836, 1310721, 63, 2359301, 1376257, 62, 2424837, 1376257, 63, 2359309, 1310721, 62, 2424845, 1310721, 63, 2359310, 1376257, 62, 2424846, 1376257, 63)
 script = ExtResource("7_vj0hi")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -14399,7 +14395,7 @@ position = Vector2(1248, 84)
 marketui = NodePath("../UIHub/MarketUI")
 
 [node name="Player" parent="." instance=ExtResource("7_2lufd")]
-position = Vector2(497, 148)
+position = Vector2(709, 99)
 
 [node name="UIHub" parent="." instance=ExtResource("13_16nlk")]
 

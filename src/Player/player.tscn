@@ -10,6 +10,7 @@ radius = 9.20165
 height = 18.4033
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 10
 y_sort_enabled = true
 collision_mask = 12
 script = ExtResource("1_l4opt")
@@ -43,6 +44,7 @@ texture_scale = 1.2
 height = 1.0
 
 [node name="glow" type="PointLight2D" parent="."]
+position = Vector2(0, -8)
 energy = 0.5
 texture = ExtResource("4_2c2px")
 offset = Vector2(0, 18)
