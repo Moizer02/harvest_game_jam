@@ -15,10 +15,11 @@ config/description="You're one last harvest away from your dream of opening a st
 run/main_scene="res://game_scene.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 run/max_fps=90
-boot_splash/image="res://art/Bug.png"
+boot_splash/image="res://src/plash/plash tiny.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://art/Bug.png"
+boot_splash/minimum_display_time=5000
 
 [display]
 

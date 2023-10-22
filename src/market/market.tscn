@@ -19,7 +19,7 @@ size = Vector2(112, 65)
 radius = 127.0
 
 [node name="Market" type="StaticBody2D"]
-z_index = 2
+z_index = 4
 y_sort_enabled = true
 scale = Vector2(1.37906, 1.37906)
 collision_layer = 8

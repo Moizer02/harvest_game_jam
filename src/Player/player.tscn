@@ -11,13 +11,13 @@ radius = 9.20165
 height = 18.4033
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 2
+z_index = 4
 y_sort_enabled = true
 collision_mask = 44
 script = ExtResource("1_l4opt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 drag_horizontal_enabled = true
@@ -34,10 +34,8 @@ shape = SubResource("CapsuleShape2D_31wkh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 9)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_xnpau")
-offset = Vector2(0, -20)
 
 [node name="Flashlight" type="PointLight2D" parent="."]
 color = Color(1, 1, 0.635294, 1)
