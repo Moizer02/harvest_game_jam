@@ -13,6 +13,7 @@ config_version=5
 config/name="Farm B&G"
 run/main_scene="res://blankmap.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+run/max_fps=90
 boot_splash/image="res://art/Bug.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -25,7 +26,6 @@ window/size/viewport_height=540
 window/size/resizable=false
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
-window/stretch/scale=2.0
 window/vsync/vsync_mode=0
 
 [filesystem]
@@ -73,6 +73,7 @@ movement_right={
 2d_physics/layer_3="Bug"
 2d_physics/layer_4="Market"
 2d_physics/layer_5="CharacterAttack"
+2d_physics/layer_6="Tiles"
 
 [rendering]
 
@@ -82,4 +83,3 @@ renderer/rendering_method.mobile="gl_compatibility"
 environment/ssao/quality=0
 environment/ssil/quality=0
 environment/volumetric_fog/use_filter=0
-environment/defaults/default_clear_color=Color(0.168627, 0.509804, 0.207843, 1)

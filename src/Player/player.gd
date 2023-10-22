@@ -14,15 +14,17 @@ var step = {
 	"pitch": 1.0,
 }
 var move_keys:Vector2
+@export var debug = false
 
 
 func _ready():
-	pass
+	if debug: $fps.visible = true
 
 func _physics_process(delta):
 	movement_handler(delta)
 
 func _process(delta):
+	if debug: $fps.text = str(Engine.get_frames_per_second())
 	if move_keys.length() > 0.05:
 		step.sinceLast += delta*move_keys.length()
 		if step.sinceLast >= step.interval:

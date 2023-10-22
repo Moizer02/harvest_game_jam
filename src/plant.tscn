@@ -19,6 +19,8 @@ _data = [Vector2(0, 0.105263), 0.0, 0.0, 0, 0, Vector2(0.824176, 1), 0.0, 0.0, 0
 point_count = 3
 
 [node name="Plant" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_5ukbh")
 stage1 = ExtResource("3_tt8r1")
 stage2 = ExtResource("4_5tckq")
@@ -27,6 +29,8 @@ stage4 = ExtResource("3_pj28a")
 stage5 = ExtResource("7_yonim")
 
 [node name="plant" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_yc1y2")
 position = Vector2(8, 0)
 texture = ExtResource("3_tt8r1")
