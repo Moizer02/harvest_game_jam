@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@export var marketui: ColorRect
+@export var marketui:Panel
 
 func _ready():
 	pass

@@ -1,37 +1,377 @@
-[gd_scene load_steps=3 format=3 uid="uid://det1gt2stgy71"]
+[gd_scene load_steps=15 format=3 uid="uid://wwdlrhpgef68"]
 
 [ext_resource type="FontFile" uid="uid://20x014qdrdni" path="res://src/fonts/kenney_kenney-fonts/Fonts/Kenney Blocks.ttf" id="1_6mmf3"]
-[ext_resource type="Texture2D" uid="uid://cfg30y10kmwer" path="res://art/crops-v2/pumkin4.png" id="1_vqhp6"]
+[ext_resource type="FontFile" uid="uid://cobj2idx5s6wb" path="res://src/fonts/kenney_kenney-fonts/Fonts/Kenney Mini.ttf" id="1_pqh0q"]
+[ext_resource type="Script" path="res://src/UI/market_ui.gd" id="2_y8jqg"]
+[ext_resource type="Texture2D" uid="uid://2y8csvilgprn" path="res://art/character.png" id="3_em5lm"]
 
-[node name="MarketUI" type="ColorRect"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8fkp"]
+bg_color = Color(0.537255, 0.466667, 0.360784, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e20wh"]
+bg_color = Color(0.435294, 0.376471, 0.282353, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1q1c"]
+bg_color = Color(0.435294, 0.376471, 0.282353, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ja2k5"]
+bg_color = Color(0.654902, 0.596078, 0.435294, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rr6i0"]
+bg_color = Color(0.639216, 0.505882, 0.364706, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 1
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_in2bw"]
+default_font = ExtResource("1_pqh0q")
+default_font_size = 16
+Button/styles/hover = SubResource("StyleBoxFlat_v8fkp")
+Button/styles/normal = SubResource("StyleBoxFlat_e20wh")
+Button/styles/pressed = SubResource("StyleBoxFlat_u1q1c")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0.21, 0.21, 0.21, 0.588235)
+Label/constants/line_spacing = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 0
+Label/styles/normal = SubResource("StyleBoxFlat_ja2k5")
+Panel/styles/panel = SubResource("StyleBoxFlat_rr6i0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka5m7"]
+bg_color = Color(0.776471, 0.513726, 0.67451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_j43e0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -36)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Canopy/Sign:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(72, 24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Canopy/Sign:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114, 27.0002)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Canopy/Sign:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["CLOSED
+"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Canopy/Sign:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_4j011"]
+resource_name = "cutscene"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, -36), Vector2(152, -56)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Canopy/Sign:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.6, 1.9, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(72, 24), Vector2(1, 24), Vector2(72, 24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Canopy/Sign:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.6, 1.9, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(114, 27.0002), Vector2(150, 27), Vector2(114, 27.0002)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Canopy/Sign:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.8, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["CLOSED", "", "OPEN"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Canopy/Sign:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rcudy"]
+_data = {
+"RESET": SubResource("Animation_j43e0"),
+"cutscene": SubResource("Animation_4j011")
+}
+
+[node name="MarketUI" type="Panel"]
+custom_minimum_size = Vector2(300, 70)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 45.0
+offset_right = 150.0
+offset_bottom = 115.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.65506, 0.173853, 0.229119, 0.25098)
+theme = SubResource("Theme_in2bw")
+script = ExtResource("2_y8jqg")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Player" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = -36.0
+offset_right = 44.0
+offset_bottom = 44.0
+texture = ExtResource("3_em5lm")
+
+[node name="Canopy" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -0.00333333
+anchor_top = -1.71429
+anchor_right = 0.996667
+anchor_bottom = -1.17143
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ka5m7")
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="Sign" type="Label" parent="Canopy"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -11.0
+offset_right = 36.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(36, 12)
+text = "CLOSED
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Price" type="Label" parent="Canopy"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.863
+anchor_top = 1.0
+anchor_right = 0.863
+anchor_bottom = 1.0
+offset_left = -35.9
+offset_top = 4.0
+offset_right = 32.1
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Pumpkins $12"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Stock" type="Label" parent="Canopy"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.863
+anchor_top = 1.52632
+anchor_right = 0.863
+anchor_bottom = 1.52632
+offset_left = -35.9
+offset_top = 4.0
+offset_right = 32.1
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0 in stock"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="pole" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0433333
+anchor_top = -1.17143
+anchor_right = 0.09
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="pole2" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.896667
+anchor_top = -1.17143
+anchor_right = 0.943333
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Open" type="Button" parent="."]
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-position = Vector2(-35, 0)
-texture = ExtResource("1_vqhp6")
-centered = false
-
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
+offset_left = 75.0
+offset_top = -14.0
+offset_right = 223.0
+offset_bottom = 18.0
 theme_override_fonts/font = ExtResource("1_6mmf3")
 theme_override_font_sizes/font_size = 16
-text = "sell for 2 $"
+text = "Open market?"
+
+[node name="Label" type="Label" parent="Open"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 33.0
+offset_right = 175.0
+offset_bottom = 73.0
+text = "(Ends the game and starts over)"
+autowrap_mode = 2
+
+[node name="Cutscene" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rcudy")
+}
+
+[connection signal="pressed" from="Open" to="." method="_onOpenPressed"]

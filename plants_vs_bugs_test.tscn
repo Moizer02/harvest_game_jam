@@ -22,6 +22,12 @@ navigation_polygon = SubResource("NavigationPolygon_wxl7w")
 
 [node name="bugs" type="Node2D" parent="."]
 
+[node name="nests" type="Node2D" parent="."]
+
+[node name="BugNest" parent="nests" instance=ExtResource("3_jhyrh")]
+position = Vector2(131, 441)
+spawnRate = 10.0
+
 [node name="plants" type="Node2D" parent="."]
 
 [node name="Soil" parent="plants" instance=ExtResource("1_h8nvy")]
@@ -35,10 +41,6 @@ position = Vector2(569, 284)
 
 [node name="Soil2" parent="plants" instance=ExtResource("1_h8nvy")]
 position = Vector2(574, 80)
-
-[node name="BugNest" parent="." instance=ExtResource("3_jhyrh")]
-position = Vector2(131, 441)
-spawnRate = 10.0
 
 [node name="Player" parent="." instance=ExtResource("2_g78at")]
 position = Vector2(485, 90)
