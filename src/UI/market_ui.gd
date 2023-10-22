@@ -6,7 +6,7 @@ var harvested = 0
 
 func UpdateStock(item:String, value):
 	harvested = value
-	$Canopy/Stock.text = value
+	$Canopy/Stock.text = str(value)
 
 
 func _onOpenPressed():

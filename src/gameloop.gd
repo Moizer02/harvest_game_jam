@@ -46,7 +46,9 @@ func _spawnNests(num:int=1):
 		var newNest = NEST.instantiate()
 		
 		nestNode.add_child(newNest)
-		newNest.position = forests[randi_range(0, forests.size())] + Vector2(randi_range(-nestRadius, nestRadius), randi_range(-nestRadius, nestRadius))
+		newNest.position = forests[randi_range(0, forests.size()-1)] + Vector2(randi_range(-nestRadius, nestRadius), randi_range(-nestRadius, nestRadius))
 
 func _onPlayerInventoryUpdated(type, value):
-	$MarketUI.UpdateStock(type, value)
+	if value >= 3 and not checkpoints.Harvest3:
+		checkpoints.Harvest3 = true
+	$UIHub/MarketUI.UpdateStock(type, value)

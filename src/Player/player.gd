@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal inventory_updated(type:String, value:int)
+
 @export var speed = 80
 var inventory:Dictionary = {
 	"harvested": {"val": 0},
@@ -61,6 +63,7 @@ func AddItem(itemName:String, amount:int=1) -> int:
 		inventory[itemName].val += amount - unused
 	else:
 		inventory[itemName] = {"val": amount}
+	emit_signal("inventory_updated", itemName, inventory[itemName].val)
 	return unused
 
 ## Remove an item from the player's inventory.

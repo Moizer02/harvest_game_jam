@@ -19,6 +19,7 @@ func _on_animation_finished(anim_name):
 	# could just edit the animation length instead.
 	match anim_name:
 		"sunset":
+			
 			await get_tree().create_timer(night_time, false).timeout
 			$AnimationPlayer.play("sunrise")
 		"sunrise":

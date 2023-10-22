@@ -17,12 +17,16 @@ var plant = null
 var tick:int = 0
 var debounce:bool = false
 var water:float = 100
+@onready var dayCycle = get_tree().current_scene.get_node_or_null("DayNightCycler")
 @onready var ui = $UI/PlantUI
 
 
 ####		Built-in Functions		############################################
 func _process(delta):
-	water = clamp(water - delta*2.0, 0, 100)
+	if dayCycle and not dayCycle.is_day:
+		water = clamp(water + delta, 0, 100)
+	else:
+		water = clamp(water - delta*2.0, 0, 100)
 	ui.SetWater(water)
 	$soil.texture = DRY_SOIL if water < 20 else WET_SOIL
 	$needwater.visible = water < 50
