@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://ckwderbo6vi8y"]
+[gd_scene load_steps=21 format=3 uid="uid://ckwderbo6vi8y"]
 
+[ext_resource type="Script" path="res://src/gameloop.gd" id="1_83bnc"]
 [ext_resource type="Texture2D" uid="uid://bprrej1axobhh" path="res://art/crops-v2/crops.png" id="1_thy8v"]
 [ext_resource type="Texture2D" uid="uid://v2j0q6iertlq" path="res://art/lpc-tile-atlas/terrain_atlas.png" id="2_u08ip"]
 [ext_resource type="Texture2D" uid="uid://bsr5s8k42y5c5" path="res://art/medieval-theme/decorations-medieval.png" id="3_3inn2"]
@@ -8988,6 +8989,7 @@ size = Vector2(20, 31)
 
 [node name="GameScene" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_83bnc")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="LakePolygon" type="Polygon2D" parent="."]

@@ -79,7 +79,6 @@ movement_right={
 [physics]
 
 2d/run_on_separate_thread=true
-common/max_physics_steps_per_frame=6
 3d/solver/solver_iterations=1
 2d/solver/solver_iterations=8
 

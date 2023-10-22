@@ -237,12 +237,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 45.0
-offset_right = 150.0
-offset_bottom = 115.0
+offset_left = -289.0
+offset_top = 61.0
+offset_right = 11.0
+offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 theme = SubResource("Theme_in2bw")
 script = ExtResource("2_y8jqg")
 
@@ -275,10 +276,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 114.0
-offset_top = 27.0002
-offset_right = 186.0
-offset_bottom = 51.0002
+offset_left = -36.0001
+offset_top = -11.0
+offset_right = 35.9999
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(36, 12)
@@ -307,13 +308,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Stock" type="Label" parent="Canopy"]
+[node name="Stock2" type="Label" parent="Canopy"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.863
-anchor_top = 1.52632
+anchor_top = 1.92104
 anchor_right = 0.863
-anchor_bottom = 1.52632
+anchor_bottom = 1.92104
 offset_left = -35.9
 offset_top = 4.0
 offset_right = 32.1
@@ -321,7 +322,27 @@ offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 8
-text = "0 in stock"
+text = "In stock"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Stock" type="Label" parent="Canopy"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.862999
+anchor_top = 1.52631
+anchor_right = 0.862999
+anchor_bottom = 1.65789
+offset_left = -35.9
+offset_top = 4.0
+offset_right = 32.1
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -364,9 +385,9 @@ show_behind_parent = true
 layout_mode = 0
 offset_left = 1.0
 offset_top = 33.0
-offset_right = 175.0
+offset_right = 155.0
 offset_bottom = 73.0
-text = "(Ends the game and starts over)"
+text = "(End the game and start New Game-)"
 autowrap_mode = 2
 
 [node name="Cutscene" type="AnimationPlayer" parent="."]
@@ -374,4 +395,16 @@ libraries = {
 "": SubResource("AnimationLibrary_rcudy")
 }
 
+[node name="Credits" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0133333
+anchor_top = 0.657143
+anchor_right = 0.22
+anchor_bottom = 0.943
+offset_bottom = -0.0100021
+text = "CREDITS"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="Open" to="." method="_onOpenPressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
