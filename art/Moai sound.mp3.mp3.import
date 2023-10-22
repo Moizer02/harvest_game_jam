@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://btk43ka31iyjs"
+path="res://.godot/imported/Moai sound.mp3.mp3-48da275a0bb3e9a0cfb47ae02479ffba.mp3str"
+
+[deps]
+
+source_file="res://art/Moai sound.mp3.mp3"
+dest_files=["res://.godot/imported/Moai sound.mp3.mp3-48da275a0bb3e9a0cfb47ae02479ffba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

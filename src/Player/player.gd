@@ -35,7 +35,6 @@ func _process(delta):
 		step.sinceLast = step.interval
 	if is_instance_valid(dayCycle):
 		$Flashlight.enabled = not dayCycle.is_day
-		$glow.enabled = not dayCycle.is_day
 	# Set angle based on velocity (if no mouse available)
 	#$Flashlight.rotation = $Flashlight.position.angle_to_point(velocity.normalized()) - PI/2
 	$Flashlight.rotation = $Flashlight.position.angle_to_point(get_local_mouse_position()) - PI/2
