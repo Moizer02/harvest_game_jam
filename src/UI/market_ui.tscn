@@ -543,6 +543,7 @@ libraries = {
 }
 
 [node name="Credits" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.00666667
