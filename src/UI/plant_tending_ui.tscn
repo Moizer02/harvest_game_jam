@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpsa32njlgavo"]
+[gd_scene load_steps=12 format=3 uid="uid://bpsa32njlgavo"]
 
 [ext_resource type="Script" path="res://src/UI/plant_tending_ui.gd" id="1_6hrum"]
 [ext_resource type="FontFile" uid="uid://20x014qdrdni" path="res://src/fonts/kenney_kenney-fonts/Fonts/Kenney Blocks.ttf" id="1_g80yy"]
@@ -11,12 +11,13 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
-[sub_resource type="LabelSettings" id="LabelSettings_d8sgh"]
-font = ExtResource("1_g80yy")
-
-[sub_resource type="LabelSettings" id="LabelSettings_3n2rt"]
-font = ExtResource("1_g80yy")
-font_size = 8
+[sub_resource type="Theme" id="Theme_7lbbe"]
+default_font = ExtResource("1_g80yy")
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_g80yy")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_g80yy")
+Panel/styles/panel = SubResource("StyleBoxFlat_v6lf4")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh381"]
 bg_color = Color(1, 1, 1, 1)
@@ -75,152 +76,123 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -70.0
-offset_right = 120.0
-offset_bottom = 70.0
+offset_left = -225.0
+offset_top = -122.0
+offset_right = 225.0
+offset_bottom = 122.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_7lbbe")
 theme_override_styles/panel = SubResource("StyleBoxFlat_v6lf4")
 script = ExtResource("1_6hrum")
 
 [node name="PlantName" type="Label" parent="."]
 layout_mode = 2
 offset_left = 5.0
-offset_top = -26.0
-offset_right = 168.0
-offset_bottom = 1.0
+offset_top = -40.0
+offset_right = 209.0
+offset_bottom = -1.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
 text = "Empty Soil"
-label_settings = SubResource("LabelSettings_d8sgh")
 vertical_alignment = 1
 
-[node name="Wither" type="Label" parent="."]
+[node name="VB" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -25.0
-offset_top = 9.0
-offset_right = 25.0
-offset_bottom = 32.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_right = -15.0
 grow_horizontal = 2
-text = "Healthy
-"
-label_settings = SubResource("LabelSettings_3n2rt")
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
+theme_override_constants/separation = 16
 
-[node name="WitherBar" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 28.0
-offset_right = 235.0
-offset_bottom = 35.0
+[node name="Wither" type="Label" parent="VB"]
+layout_mode = 2
+text = "HEALTHY"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="WitherBar" type="ProgressBar" parent="VB"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_gh381")
 theme_override_styles/fill = SubResource("StyleBoxFlat_s7ekc")
 show_percentage = false
 
-[node name="WaterBar" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 57.0
-offset_right = 105.0
-offset_bottom = 62.0
+[node name="HB" type="HBoxContainer" parent="VB"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBW" type="VBoxContainer" parent="VB/HB"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="WaterBar" type="ProgressBar" parent="VB/HB/VBW"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_t0w7w")
 theme_override_styles/fill = SubResource("StyleBoxFlat_shsx2")
 show_percentage = false
 
-[node name="WaterButton" type="Button" parent="WaterBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -29.5
-offset_top = 5.5
-offset_right = 30.5
-offset_bottom = 25.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_g80yy")
-theme_override_font_sizes/font_size = 8
+[node name="WaterButton" type="Button" parent="VB/HB/VBW"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 text = "Water"
 
-[node name="BugBar" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_left = 135.0
-offset_top = 57.0
-offset_right = 230.0
-offset_bottom = 62.0
+[node name="VBB" type="VBoxContainer" parent="VB/HB"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="BugBar" type="ProgressBar" parent="VB/HB/VBB"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_flilv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sk0wv")
 max_value = 3.0
 show_percentage = false
 
-[node name="BugButton" type="Button" parent="BugBar"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 8.0
-offset_right = 76.0
-offset_bottom = 28.0
-theme_override_fonts/font = ExtResource("1_g80yy")
-theme_override_font_sizes/font_size = 8
+[node name="BugButton" type="Button" parent="VB/HB/VBB"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 text = "Kill Bugs"
 
-[node name="HarvestBar" type="ProgressBar" parent="."]
+[node name="HarvestBar" type="ProgressBar" parent="VB"]
 visible = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = 101.0
-offset_right = 235.0
-offset_bottom = 106.0
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_jr45y")
 theme_override_styles/fill = SubResource("StyleBoxFlat_shsx2")
 max_value = 4.0
 step = 1.0
 show_percentage = false
 
-[node name="HarvestButton" type="Button" parent="HarvestBar"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = 4.0
-offset_right = 43.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_g80yy")
-theme_override_font_sizes/font_size = 8
+[node name="HarvestButton" type="Button" parent="VB"]
+visible = false
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 disabled = true
 text = "harvest"
 
-[node name="PlantSeed" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.928571
-anchor_right = 0.5
-anchor_bottom = 0.928571
-offset_left = -43.0
-offset_top = -25.0
-offset_right = 43.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_g80yy")
-theme_override_font_sizes/font_size = 8
+[node name="spacer" type="Control" parent="VB"]
+layout_mode = 2
+
+[node name="PlantSeed" type="Button" parent="VB"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 text = "Plant Seed"
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="WaterBar/WaterButton" to="." method="_on_water_button_pressed"]
-[connection signal="pressed" from="BugBar/BugButton" to="." method="_on_bug_button_pressed"]
-[connection signal="pressed" from="HarvestBar/HarvestButton" to="." method="_on_harvest_button_pressed"]
-[connection signal="pressed" from="PlantSeed" to="." method="_on_plant_seed_pressed"]
+[connection signal="pressed" from="VB/HB/VBW/WaterButton" to="." method="_on_water_button_pressed"]
+[connection signal="pressed" from="VB/HB/VBB/BugButton" to="." method="_on_bug_button_pressed"]
+[connection signal="pressed" from="VB/HarvestButton" to="." method="_on_harvest_button_pressed"]
+[connection signal="pressed" from="VB/PlantSeed" to="." method="_on_plant_seed_pressed"]

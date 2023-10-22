@@ -14,8 +14,10 @@ func ResetDisplay():
 	# Water & Wither is updated by the soil in a process loop
 
 func SetPlanted(isPlanted:bool):
-	$HarvestBar.visible = isPlanted
-	$PlantSeed.visible = not isPlanted
+	$VB/HarvestBar.visible = isPlanted
+	$VB/HarvestButton.visible = isPlanted
+	$VB/spacer.visible = not isPlanted
+	$VB/PlantSeed.visible = not isPlanted
 	if isPlanted:
 		SetName("Pumpkin")
 		SetWitherText("Healthy")
@@ -26,34 +28,35 @@ func SetName(text:String):
 	$PlantName.text = text
 
 func SetWitherText(text:String):
-	$Wither.text = text
+	$VB/Wither.text = text
 
 func SetWither(amount:float) -> bool:
-	$WitherBar.value = amount
-	if amount >= 2.0*$WitherBar.max_value/3.0:
+	$VB/WitherBar.value = amount
+	if amount >= 2.0*$VB/WitherBar.max_value/3.0:
 		SetWitherText("Dying")
-	elif amount >= $WitherBar.max_value/3.0:
+	elif amount >= $VB/WitherBar.max_value/3.0:
 		SetWitherText("Struggling")
 	else:
 		SetWitherText("Healthy")
-	return $WitherBar.value == $WitherBar.max_value
+	return $VB/WitherBar.value == $VB/WitherBar.max_value
 
 func SetWater(amount:float) -> bool:
-	$WaterBar.value = amount
-	return $WaterBar.value == $WaterBar.max_value
+	$VB/HB/VBW/WaterBar.value = amount
+	return $VB/HB/VBW/WaterBar.value == $VB/HB/VBW/WaterBar.max_value
 
 func SetBugs(amount:float) -> bool:
-	$BugBar.value = amount
-	return $BugBar.value == $BugBar.max_value
+	$VB/HB/VBB/BugBar.value = amount
+	return $VB/HB/VBB/BugBar.value == $VB/HB/VBB/BugBar.max_value
 
 func SetHarvest(amount:int) -> bool:
-	$HarvestBar.value = amount
-	$HarvestBar/HarvestButton.disabled = $HarvestBar.value < $HarvestBar.max_value
-	return $HarvestBar.value == $HarvestBar.max_value
+	$VB/HarvestBar.value = amount
+	$VB/HarvestButton.disabled = $VB/HarvestBar.value < $VB/HarvestBar.max_value
+	return $VB/HarvestBar.value == $VB/HarvestBar.max_value
 
 
 func _on_harvest_button_pressed():
-	$HarvestBar.visible = false
+	$VB/HarvestBar.visible = false
+	$VB/HarvestButton.visible = false
 	emit_signal("pressed_harvest")
 
 func _on_bug_button_pressed():

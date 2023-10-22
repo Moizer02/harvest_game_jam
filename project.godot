@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Farm B&G"
+config/name="The Market Stand"
+config/description="You're one last harvest away from your dream of opening a stand that sells farm fresh vegetables. But you'll need to stay sharp! More than just people seem interested in your crop of pumpkins."
 run/main_scene="res://blankmap.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 boot_splash/image="res://art/Bug.png"
@@ -25,7 +26,6 @@ window/size/viewport_height=540
 window/size/resizable=false
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
-window/stretch/scale=2.0
 window/vsync/vsync_mode=0
 
 [filesystem]
@@ -73,6 +73,13 @@ movement_right={
 2d_physics/layer_3="Bug"
 2d_physics/layer_4="Market"
 2d_physics/layer_5="CharacterAttack"
+
+[physics]
+
+2d/run_on_separate_thread=true
+common/max_physics_steps_per_frame=6
+3d/solver/solver_iterations=1
+2d/solver/solver_iterations=8
 
 [rendering]
 
