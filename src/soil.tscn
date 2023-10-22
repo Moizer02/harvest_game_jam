@@ -13,6 +13,8 @@ radius = 12.0
 radius = 16.0
 
 [node name="Soil" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
 collision_layer = 2
 collision_mask = 5
 input_pickable = true
@@ -20,10 +22,13 @@ script = ExtResource("1_ifag8")
 contains = ExtResource("2_m6mq1")
 
 [node name="shape" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_qqeji")
 
 [node name="soil" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(0, -4)
 texture = ExtResource("7_xkf7d")
 
@@ -36,6 +41,7 @@ texture = ExtResource("8_h53y1")
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_jilpf")
 

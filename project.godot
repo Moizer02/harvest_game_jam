@@ -14,6 +14,7 @@ config/name="The Market Stand"
 config/description="You're one last harvest away from your dream of opening a stand that sells farm fresh vegetables. But you'll need to stay sharp! More than just people seem interested in your crop of pumpkins."
 run/main_scene="res://blankmap.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+run/max_fps=90
 boot_splash/image="res://art/Bug.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -73,6 +74,7 @@ movement_right={
 2d_physics/layer_3="Bug"
 2d_physics/layer_4="Market"
 2d_physics/layer_5="CharacterAttack"
+2d_physics/layer_6="Tiles"
 
 [physics]
 
@@ -89,4 +91,3 @@ renderer/rendering_method.mobile="gl_compatibility"
 environment/ssao/quality=0
 environment/ssil/quality=0
 environment/volumetric_fog/use_filter=0
-environment/defaults/default_clear_color=Color(0.168627, 0.509804, 0.207843, 1)
